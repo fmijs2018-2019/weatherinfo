@@ -1,0 +1,20 @@
+
+.search-container {
+	background-color: blanchedalmond;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.search-result-container {
+	max-width: 750px;
+	margin: auto;
+	/* background-color: antiquewhite; */
+}
+
+.page-title {
+	text-align: center;
+}
