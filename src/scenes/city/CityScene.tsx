@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './CityScene.css'
+import './CityScene.css';
 import { WeatherSummaryTable } from './components/WeatherSummaryTable';
 import { Header } from 'semantic-ui-react';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';

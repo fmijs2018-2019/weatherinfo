@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Layout } from './Layout';
 import { Route, Switch, Redirect } from 'react-router';
-import { HomeScene } from './scenes/home/HomeScene';
 import { AboutScene } from './scenes/about/AboutScene';
 import CityScene from './scenes/city/CityScene';
+import { HomeScene } from './scenes/home/HomeScene';
 
 class App extends Component {
 	render() {
