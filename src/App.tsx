@@ -5,7 +5,7 @@ import { Layout } from './Layout';
 import { Route, Switch, Redirect } from 'react-router';
 import { HomeScene } from './scenes/home/HomeScene';
 import { AboutScene } from './scenes/about/AboutScene';
-import { CityScene } from './scenes/city/CityScene';
+import CityScene from './scenes/City/CityScene';
 
 class App extends Component {
 	render() {

@@ -4,10 +4,11 @@ import { SearchResultItem } from './components/SearchResultItem';
 import './HomeScene.css'
 import weatherApi from '../../api/WeatherApi';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
+import { Message } from 'semantic-ui-react';
 
 interface IHomeSceneState {
-	searchBarValue: string,
 	cityWeatherItems: ICurrentWeather[],
+	cityNotFound: boolean;
 }
 
 interface IHomeSceneProps {
@@ -19,37 +20,30 @@ export class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState>
 	constructor(props: Readonly<IHomeSceneProps>) {
 		super(props);
 		this.state = {
-			searchBarValue: '',
 			cityWeatherItems: [],
+			cityNotFound: false,
 		}
 	}
 
-	onSearchButtonClick = (e: any, data: any) => {
-		console.log(this.state.searchBarValue);
-		weatherApi.getCurrentWeather(this.state.searchBarValue).then(res => {
-			this.setState({ cityWeatherItems: [...this.state.cityWeatherItems, res] });
-		});
-	}
-
-	onLocationButtonClick = () => {
-
-	}
-
-	onSearchValueChange = (e: any) => {
-		this.setState({ searchBarValue: e.target.value })
+	onSearchValueChange: any = (city: string, code: string) => {
+		const input = code ? city + "," + code : city;
+		weatherApi.getCurrentWeather(input)
+			.then(res => {
+				this.setState({ cityWeatherItems: [res], cityNotFound: false });
+			}).catch(error => {
+				this.setState({ cityWeatherItems: [], cityNotFound: true })
+			});
 	}
 
 	render() {
-
+		const { cityNotFound, cityWeatherItems } = this.state;
 		return <React.Fragment>
 			<div className="search-container">
-				<CitySearchBar
-					onSearchButtonClick={this.onSearchButtonClick}
-					onLocationButtonClick={this.onLocationButtonClick}
-					onSearchValueChange={this.onSearchValueChange} ></CitySearchBar>
+				<CitySearchBar onSelect={this.onSearchValueChange} ></CitySearchBar>
 			</div>
 			<div className="search-result-container">
-				{this.state.cityWeatherItems.map(i => <SearchResultItem key={i.id} currentWeather={i}></SearchResultItem>)}
+				{cityNotFound && <Message color='teal'>No <b>WeatherInfo</b> for selected city :(</Message>}
+				{cityWeatherItems.map(i => <SearchResultItem key={i.id} currentWeather={i}></SearchResultItem>)}
 			</div>
 		</React.Fragment>
 	}
