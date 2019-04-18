@@ -16,7 +16,7 @@ class NavigationBar extends React.Component<INavigationBarProps, INavigationBarS
 
 	handleItemClick = (e: any, obj: any) => {
 		this.setState({ activeItem: obj.name });
-		this.props.history.push(obj.name);
+		this.props.history.push(`/${obj.name}`);
 	}
 
 	render() {
@@ -27,7 +27,7 @@ class NavigationBar extends React.Component<INavigationBarProps, INavigationBarS
 				<Menu size='huge' pointing secondary>
 					<Menu.Item header>WeatherInfo</Menu.Item>
 					<Menu.Item name='home' color='teal' active={activeItem === 'home'} onClick={this.handleItemClick} />
-					<Menu.Item name='about'  color='teal' active={activeItem === 'about'} onClick={this.handleItemClick} />
+					<Menu.Item name='about' color='teal' active={activeItem === 'about'} onClick={this.handleItemClick} />
 				</Menu>
 			</React.Fragment >
 		)

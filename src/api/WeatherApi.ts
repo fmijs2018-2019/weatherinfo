@@ -3,31 +3,26 @@ import apiConfig from './apiConfig';
 import { ICurrentWeather } from '../models/ICurrentWeather';
 
 class WeatherApi {
+	private defaultParams = {
+		appid: apiConfig.appid,
+		units: 'metric'
+	}
+
 	getCurrentWeather(city: string) {
 		const url = `${apiConfig.mainApiUrl}${apiConfig.currentWeatherPath}`;
-		const config: AxiosRequestConfig = {
-			params: {
-				appid: apiConfig.appid,
-				q: city
-			}
-		}
+		const config: AxiosRequestConfig = { params: { ...this.defaultParams, q: city } }
 		return axios.get<ICurrentWeather>(url, config)
 			.then(response => response.data);
 	}
 
 	getFiveDaysThreeHoursWeather(city: string) {
 		const url = `${apiConfig.mainApiUrl}${apiConfig.fiveDaysThreeHoursWeatherPath}`;
-		const config: AxiosRequestConfig = {
-			params: {
-				q: city,
-				appid: apiConfig.appid,
-			}
-		}
+		const config: AxiosRequestConfig = { params: { ...this.defaultParams, q: city } }
 		return axios.get<ICurrentWeather>(url, config)
 			.then(response => response.data);
 	}
-}	
+}
 
-	
+
 const weatherApi = new WeatherApi();
 export default weatherApi;

@@ -11,7 +11,7 @@ import { Layout } from './Layout';
 import { IntlProvider } from 'react-intl';
 
 ReactDOM.render(
-	<IntlProvider>
+	<IntlProvider locale="en">
 		<BrowserRouter>
 			<App />
 		</BrowserRouter>

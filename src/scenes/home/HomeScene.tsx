@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CitySearchBar } from './components/CitySearchBar';
+import CitySearchBar from './components/CitySearchBar';
 import { SearchResultItem } from './components/SearchResultItem';
 import './HomeScene.css'
 import weatherApi from '../../api/WeatherApi';
@@ -24,8 +24,7 @@ export class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState>
 		}
 	}
 
-	onSearchButtonClick = (e: any, data: any) => {
-		console.log(this.state.searchBarValue);
+	onSearchButtonClick = () => {
 		weatherApi.getCurrentWeather(this.state.searchBarValue).then(res => {
 			this.setState({ cityWeatherItems: [...this.state.cityWeatherItems, res] });
 		});

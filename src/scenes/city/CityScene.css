@@ -21,3 +21,7 @@
 	-webkit-align-items: center;
 	align-items: center;
 }
+
+h1, h3{
+	text-align: center;
+}

@@ -5,7 +5,7 @@ import { Layout } from './Layout';
 import { Route, Switch, Redirect } from 'react-router';
 import { HomeScene } from './scenes/home/HomeScene';
 import { AboutScene } from './scenes/about/AboutScene';
-import { CityScene } from './scenes/city/CityScene';
+import CityScene from './scenes/city/CityScene';
 
 class App extends Component {
 	render() {
@@ -13,7 +13,7 @@ class App extends Component {
 			<Switch>
 				<Route exact path="/home" component={HomeScene} />
 				<Route path='/about' component={AboutScene} />
-				<Route path='/city' component={CityScene} />
+				<Route path='/cities/:city' component={CityScene} />
 				<Redirect to="/home" />
 			</Switch>
 		</Layout>;
