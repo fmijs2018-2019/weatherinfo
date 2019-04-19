@@ -7,15 +7,15 @@ export const messages = defineMessages({
 	},
 	pressure: {
 		id: 'common.pressure',
-		defaultMessage: 'Pressure '
+		defaultMessage: 'Pressure'
 	},
 	temperature: {
 		id: 'common.temperature',
 		defaultMessage: 'Temperature'
 	},
-	precipiation: {
-		id: 'common.precipiation',
-		defaultMessage: 'Precipiation'
+	precipitation: {
+		id: 'common.precipitation',
+		defaultMessage: 'Precipitation'
 	},
 	rain: {
 		id: 'common.rain',

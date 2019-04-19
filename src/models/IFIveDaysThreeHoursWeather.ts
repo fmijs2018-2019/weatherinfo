@@ -22,7 +22,7 @@ export interface IWeatherItem {
 	weather: IWeather,
 	clouds: IClouds,
 	wind: IWind,
-	rain: IRain, // only 3h
-	snow: ISnow, // only 3h
+	rain?: IRain, // only 3h
+	snow?: ISnow, // only 3h
 	dt_txt: string // Data/time of calculation, UTC
 }

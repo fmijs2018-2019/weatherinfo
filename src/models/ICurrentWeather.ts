@@ -5,8 +5,8 @@ export interface ICurrentWeather {
 	main: IMainWeather,
 	wind: IWind,
 	clouds: IClouds,
-	rain: IRain,
-	snow: ISnow,
+	rain?: IRain,
+	snow?: ISnow,
 	dt: number, // Time of data calculations, unix, UTC
 	sys: ISys,
 	id: number, // City id
