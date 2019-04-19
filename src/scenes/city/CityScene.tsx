@@ -58,6 +58,16 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 				let precipitationChartData: IPrecipitationDataItem[] = [];
 				let windChartData: IWindDataItem[] = [];
 
+				if (!currentWeather.rain) {
+					const weatherItem = chartsData.find(i => i.rain !== undefined);
+					currentWeather.rain = weatherItem && weatherItem.rain;
+				}
+
+				if (!currentWeather.snow) {
+					const weatherItem = chartsData.find(i => i.snow !== undefined);
+					currentWeather.snow = weatherItem && weatherItem.snow;
+				}
+
 				chartsData.forEach(i => {
 					const name = i.dt_txt.slice(11, 16);
 					tempChartData.push({
@@ -74,7 +84,13 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 						grndLevel: i.main.grnd_level,
 						seaLevel: i.main.sea_level
 					});
-					precipitationChartData.push({ name, rain: i.rain && i.rain["3h"], snow: i.snow && i.snow["3h"] });
+
+					const { rain, snow } = i;
+					if (rain || snow) {
+						precipitationChartData.push({ name, rain: rain && rain["3h"] || 0, snow: snow && snow["3h"] || 0 });
+					} else if (precipitationChartData.length > 0) {
+						precipitationChartData.push({ name, rain: 0, snow: 0 });
+					}
 				});
 
 				this.setState({ city, currentWeather, tempChartData, windChartData, pressureChartData, precipitationChartData });
@@ -102,7 +118,7 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 					{activeChart === 'Temperature' && <TempComposedChart data={tempChartData}></TempComposedChart>}
 					{activeChart === 'Wind' && <WindLineChart data={windChartData}></WindLineChart>}
 					{activeChart === 'Pressure' && <PressureComposedChart data={pressureChartData}></PressureComposedChart>}
-					{activeChart === 'Precipitation' && <PrecipitationAriaChart data={precipitationChartData}></PrecipitationAriaChart>}				
+					{activeChart === 'Precipitation' && <PrecipitationAriaChart data={precipitationChartData}></PrecipitationAriaChart>}
 				</div>
 			</div>
 		</React.Fragment >;
