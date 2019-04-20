@@ -7,11 +7,11 @@ interface ILayoutProps {
 export class Layout extends React.Component<ILayoutProps> {
 
     render() {
-        return <React.Fragment>
+        return <div>
 			<NavigationBar></NavigationBar>
             <main>
                 {this.props.children}
             </main>
-        </React.Fragment>;
+        </div>;
     }
 }
