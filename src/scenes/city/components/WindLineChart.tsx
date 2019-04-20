@@ -10,10 +10,10 @@ interface IWindLineChart {
 const CustomTooltip = (props: any) => {
 	if (props.active) {
 		const { payload } = props.payload[0];
-		return <div style={{backgroundColor: 'white', padding: '3px', border: 'rgba(0, 0, 0, 0.5) solid 1px'}}>
+		return <div style={{ backgroundColor: 'white', padding: '5px', border: 'rgba(0, 0, 0, 0.5) solid 1px' }}>
 			<div>Time: {payload.name}</div>
-			<div>Speed: {payload.speed} m/s</div>
-			<div>Direction: {getWindDirection(payload.deg)} ({payload.deg})</div>
+			<div style={{ color: '#0857e0' }}>Speed: {payload.speed} m/s</div>
+			<div style={{ color: '#f21607' }}>Direction: {getWindDirection(payload.deg)} ({payload.deg})</div>
 		</div>
 	}
 	return null;
@@ -30,6 +30,6 @@ export const WindLineChart = (props: IWindLineChart) => {
 		/>
 		<Legend />
 
-		<Line type="monotone" dataKey="speed" stroke="#0857e0" />
+		<Line type="monotone" name="Speed" dataKey="speed" stroke="#0857e0" unit="m/s" />
 	</LineChart>
 }

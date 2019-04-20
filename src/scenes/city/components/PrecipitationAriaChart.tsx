@@ -8,7 +8,7 @@ interface IPrecipitationAriaChartProps {
 }
 
 export const PrecipitationAriaChart = (props: IPrecipitationAriaChartProps) => {
-	return props.data[0].rain && <AreaChart width={850} height={320} data={props.data}
+	return props.data.length > 0 && <AreaChart width={850} height={320} data={props.data}
 		margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
 		<defs>
 			<linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -24,8 +24,8 @@ export const PrecipitationAriaChart = (props: IPrecipitationAriaChartProps) => {
 		<YAxis />
 		<CartesianGrid strokeDasharray="3 3" />
 		<Tooltip />
-		<Area type="monotone" dataKey="rain" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-		<Area type="monotone" dataKey="snow" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+		<Area type="monotone" dataKey="rain" name="Rain" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" unit="mm" />
+		<Area type="monotone" dataKey="snow" name="Snow" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" unit="mm" />
 	</AreaChart> ||
-	<FormattedMessage id="common.missing-data" defaultMessage="There is no available data."></FormattedMessage>
+		<FormattedMessage id="common.missing-data" defaultMessage="There is no available data."></FormattedMessage>
 }
