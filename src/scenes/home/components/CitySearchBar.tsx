@@ -3,7 +3,8 @@ import { Segment, Input, Divider, Button, Dropdown } from 'semantic-ui-react';
 import _ from "lodash";
 import GoogleApi from '../../../api/GoogleApi';
 import { Prediction } from '../../../models/IPlacesAutocompleteResponse';
-import { getCityCode } from '../../../common/CitiesCodes';
+import { CountryHelperMethods } from '../../../common/common';
+
 interface ICitySearchBarProps {
 	onSelect: (city: string, code: string) => void
 }
@@ -27,7 +28,8 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 				.map(v => {
 					const fragments = v.structured_formatting.secondary_text.split(', ');
 					const country = fragments[fragments.length - 1];
-					const code = getCityCode(country, false) || ""; 
+					const codeUpper = CountryHelperMethods.convertCountryToAlpha2(country, false) || "";
+					const code = codeUpper.toLowerCase();
 					return {
 						flag: code,
 						key: v.id, 

@@ -2,6 +2,7 @@ import { Motion, spring } from "react-motion";
 import geography from "../world-50m.json";
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from "react-simple-maps";
 import React from "react";
+import ReactTooltip from "react-tooltip";
 
 interface IWorldMapProps {
 	lat: number;
@@ -12,7 +13,6 @@ interface IWorldMapProps {
 	hoverStyle?: React.CSSProperties;
 	pressedStyle?: React.CSSProperties;
 	onCountryClick?: (country: ICountry) => void;
-	onMouseMove?: (country: ICountry) => void;
 }
 
 export interface ICountry {
@@ -34,10 +34,17 @@ export default class WorldMap extends React.Component<IWorldMapProps> {
 		}
 	}
 
-	onMouseMove = (country: ICountry) => {
-		const { onMouseMove } = this.props;
-		if (onMouseMove) {
-			onMouseMove(country);
+	timeout?: NodeJS.Timeout;
+
+	componentDidMount() {
+		this.timeout = setTimeout(() => {
+			ReactTooltip.rebuild()
+		}, 100)
+	}
+
+	componentWillUnmount () {
+		if (this.timeout) {
+			clearTimeout(this.timeout)
 		}
 	}
 
@@ -82,32 +89,35 @@ export default class WorldMap extends React.Component<IWorldMapProps> {
 				}}
 			>
 				{({ zoom, x, y }: any) => (
-					<ComposableMap
-						projectionConfig={{ scale: 205 }}
-						width={900}
-						height={551}
-						style={mapStyle}
-					>
-						<ZoomableGroup center={[x, y]} zoom={zoom} disablePanning>
-							<Geographies geography={geography}>
-								{(geographies, projection) =>
-									geographies.map((geography: any, i) => geography.id !== "010" && (
-										<Geography
-											key={i}
-											geography={geography}
-											projection={projection}
-											onClick={(data: any) => this.onClick(data)}
-											onMouseMove={(data: any) => this.onMouseMove(data)}
-											style={{
-												default: _defaultStyle,
-												hover: _hoverStyle,
-												pressed: _pressedStyle,
-											}}
-										/>
-									))}
-							</Geographies>
-						</ZoomableGroup>
-					</ComposableMap>
+					<React.Fragment>
+						<ComposableMap
+							projectionConfig={{ scale: 205 }}
+							width={900}
+							height={551}
+							style={mapStyle}
+						>
+							<ZoomableGroup center={[x, y]} zoom={zoom} disablePanning>
+								<Geographies geography={geography}>
+									{(geographies, projection) =>
+										geographies.map((geography: any, i) => geography.id !== "010" && (
+											<Geography
+												key={i}
+												geography={geography}
+												data-tip={geography.properties.name}
+												projection={projection}
+												onClick={(data: any) => this.onClick(data)}
+												style={{
+													default: _defaultStyle,
+													hover: _hoverStyle,
+													pressed: _pressedStyle,
+												}}
+											/>
+										))}
+								</Geographies>
+							</ZoomableGroup>
+						</ComposableMap>
+						<ReactTooltip />
+					</React.Fragment>
 				)}
 			</Motion>
 		);

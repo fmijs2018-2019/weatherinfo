@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { ContinentsDropdown, IContinentItem } from "./components/ContinentsDropdown";
 import "./index.css";
-import WorldMap from "./components/WorldMap";
+import WorldMap, { ICountry } from "./components/WorldMap";
+import { RouteComponentProps } from "react-router";
 
 interface IMapSceneState {
 	lat: number;
@@ -9,7 +10,9 @@ interface IMapSceneState {
 	zoom: number;
 }
 
-class MapScene extends Component<{}, IMapSceneState> {
+interface IMapSceneProps extends RouteComponentProps {};
+
+class MapScene extends Component<IMapSceneProps, IMapSceneState> {
 	constructor(props: any) {
 		super(props)
 		this.state = {
@@ -26,6 +29,10 @@ class MapScene extends Component<{}, IMapSceneState> {
 		})
 	}
 	handleCityClick = (city: any) => {
+	}
+
+	countryClick = (country: ICountry) => {
+		this.props.history.push(`/country/${country.id}`);
 	}
 
 	render() {
@@ -52,7 +59,7 @@ class MapScene extends Component<{}, IMapSceneState> {
 		return (
 			<div className="streched-container" >
 				<ContinentsDropdown options={itemsList} style={dropDownStye} onContinentSelect={this.handleContinentClick} />
-				<WorldMap lat={lat} lon={lon} zoom={zoom} mapStyle={mapStyle} />
+				<WorldMap lat={lat} lon={lon} zoom={zoom} mapStyle={mapStyle} onCountryClick={this.countryClick} />
 			</div>
 		)
 	}
