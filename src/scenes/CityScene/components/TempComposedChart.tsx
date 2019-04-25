@@ -7,7 +7,7 @@ interface ITempLineChartProps {
 }
 
 const CustomTooltipp = (props: any) => {
-	if (props.active) {
+	if (props && props.active) {
 		const { payload } = props.payload[0];
 		return <div style={{ backgroundColor: 'white', padding: '5px', border: 'rgba(0, 0, 0, 0.5) solid 1px' }}>
 			<div>Time: {payload.name}</div>

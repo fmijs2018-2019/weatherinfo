@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CitySearchBar } from './components/CitySearchBar';
 import { SearchResultItem } from './components/SearchResultItem';
-import './HomeScene.css'
+import './index.css'
 import weatherApi from '../../api/WeatherApi';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
 import { Message } from 'semantic-ui-react';
@@ -15,7 +15,7 @@ interface IHomeSceneProps {
 
 }
 
-export class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
+class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
 
 	constructor(props: Readonly<IHomeSceneProps>) {
 		super(props);
@@ -48,3 +48,5 @@ export class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState>
 		</React.Fragment>
 	}
 }
+
+export default HomeScene;

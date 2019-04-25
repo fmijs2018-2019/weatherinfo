@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import { Layout } from './Layout';
 import { Route, Switch, Redirect } from 'react-router';
-import { AboutScene } from './scenes/about/AboutScene';
-import { HomeScene } from './scenes/home/HomeScene';
-import CityScene from './scenes/City/CityScene';
+import AboutScene from './scenes/AboutScene';
+import HomeScene from './scenes/HomeScene';
+import CityScene from './scenes/CityScene';
 import MapScene from './scenes/MapScene';
 import CountryScene from './scenes/CountryScene';
 

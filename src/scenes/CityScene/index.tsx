@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './CityScene.css';
+import './index.css';
 import { WeatherSummaryTable } from './components/WeatherSummaryTable';
 import { Header } from 'semantic-ui-react';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
@@ -16,6 +16,7 @@ import { IPressureDataItem } from '../../models/IPressureDataItem';
 import { PressureComposedChart } from './components/PressureComposedChart';
 import { IPrecipitationDataItem } from '../../models/IPrecipitationDataItem';
 import { PrecipitationAriaChart } from './components/PrecipitationAriaChart';
+import { WeatherSwiper } from './components/WeatherSwiper';
 
 interface ICitySceneState {
 	currentWeather?: ICurrentWeather,
@@ -119,6 +120,11 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 					{activeChart === 'Wind' && <WindLineChart data={windChartData}></WindLineChart>}
 					{activeChart === 'Pressure' && <PressureComposedChart data={pressureChartData}></PressureComposedChart>}
 					{activeChart === 'Precipitation' && <PrecipitationAriaChart data={precipitationChartData}></PrecipitationAriaChart>}
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-md-10 col-md-offset-1">
+					<WeatherSwiper slicePerView={3}></WeatherSwiper>
 				</div>
 			</div>
 		</React.Fragment >;
