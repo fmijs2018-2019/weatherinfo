@@ -1,16 +1,17 @@
 import * as React from 'react';
 import SwiperSlide from 'react-id-swiper/lib/ReactIdSwiper.full';
-import { ICurrentWeather } from '../../../models/ICurrentWeather';
+import { WeatherSwiperItem } from './WeatherSwiperItem';
+import { IWeatherShortInfo } from '../../../models/IWeatherShortInfo';
 
 interface IWeatherSwiperProps {
-	slicePerView: number,
-	// items: ICurrentWeather[]
+	items: IWeatherShortInfo[];
 }
 
 export const WeatherSwiper = (props: IWeatherSwiperProps) => {
+	const { items } = props;
 
 	const params = {
-		slidesPerView: props.slicePerView,
+		slidesPerView: 3,
 		spaceBetween: 30,
 		pagination: {
 			el: '.swiper-pagination',
@@ -19,16 +20,22 @@ export const WeatherSwiper = (props: IWeatherSwiperProps) => {
 		navigation: {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev'
+		},
+		breakpoints: {
+			900: {
+				slidesPerView: 2,
+				spaceBetween: 30
+			},
+			600: {
+				slidesPerView: 1,
+				spaceBetween: 20
+			}
 		}
 	};
 
 	return <React.Fragment>
-		<SwiperSlide {...params}>
-			<div>Slide 1</div>
-			<div>Slide 2</div>
-			<div>Slide 3</div>
-			<div>Slide 4</div>
-			<div>Slide 5</div>
+		<SwiperSlide {...params} shouldSwiperUpdate rebuildOnUpdate>
+			{items.map(i => <div key={i.date}><WeatherSwiperItem weather={i}></WeatherSwiperItem></div>)}
 		</SwiperSlide>
 	</React.Fragment>
 }

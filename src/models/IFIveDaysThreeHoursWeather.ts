@@ -19,7 +19,7 @@ export interface ICity {
 export interface IWeatherItem {
 	dt: number // Time of data forecast, unix, UTC
 	main: IMainWeather,
-	weather: IWeather,
+	weather: IWeather[],
 	clouds: IClouds,
 	wind: IWind,
 	rain?: IRain, // only 3h

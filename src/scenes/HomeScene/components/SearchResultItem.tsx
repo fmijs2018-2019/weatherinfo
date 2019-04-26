@@ -5,6 +5,7 @@ import apiConfig from '../../../api/apiConfig';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+import WeatherIcon from '../../../components/WeatherIcon';
 
 interface ISearchResultItemProps {
 	currentWeather: ICurrentWeather
@@ -12,12 +13,12 @@ interface ISearchResultItemProps {
 
 export const SearchResultItem = (props: ISearchResultItemProps) => {
 	const { weather, main, wind, clouds, coord, name: city, sys } = props.currentWeather;
-	const img = weather && weather.length && weather[0].icon;
+	const icon = weather && weather.length && weather[0].icon;
 
 	return <div className="row search-result-item">
 		<div className="col-xs-2 col-xs-offset-1">
 			<div className="row">
-				{img && <div className="col-xs-12"><span><img src={apiConfig.imgUrl(img)} /></span></div>}
+				{icon && <div className="col-xs-12"><span><WeatherIcon icon={icon}/></span></div>}
 				<div className="col-xs-12"><span><b>{weather[0].main}</b></span></div>
 			</div>
 		</div>

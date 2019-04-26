@@ -6,26 +6,16 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
 import weatherApi from '../../api/WeatherApi';
 import { RouteComponentProps } from 'react-router';
-import ChartsNavBar from './components/ChartsNavBar';
-import { TempComposedChart } from './components/TempComposedChart';
-import { ITempDataItem } from '../../models/ITempDataItem';
-import { IWindDataItem } from '../../models/IWindDataItem';
-import { WindLineChart } from './components/WindLineChart';
-import apiConfig from '../../api/apiConfig';
-import { IPressureDataItem } from '../../models/IPressureDataItem';
-import { PressureComposedChart } from './components/PressureComposedChart';
-import { IPrecipitationDataItem } from '../../models/IPrecipitationDataItem';
-import { PrecipitationAriaChart } from './components/PrecipitationAriaChart';
 import { WeatherSwiper } from './components/WeatherSwiper';
+import { IWeatherShortInfo } from '../../models/IWeatherShortInfo';
+import { IFiveDaysThreeHoursWeather } from '../../models/IFIveDaysThreeHoursWeather';
+import ChartsComponent from './components/ChartsComponent';
 
 interface ICitySceneState {
 	currentWeather?: ICurrentWeather,
+	fiveDaysThreeHoursWeather?: IFiveDaysThreeHoursWeather,
 	city: string,
-	activeChart: string,
-	tempChartData: ITempDataItem[],
-	pressureChartData: IPressureDataItem[],
-	precipitationChartData: IPrecipitationDataItem[],
-	windChartData: IWindDataItem[],
+	swiperItemsData: IWeatherShortInfo[],
 }
 interface ICitySceneProps extends RouteComponentProps, InjectedIntlProps {
 
@@ -38,11 +28,7 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 		const city = (this.props.match.params as any).city
 		this.state = {
 			city,
-			activeChart: 'Temperature',
-			tempChartData: [],
-			windChartData: [],
-			precipitationChartData: [],
-			pressureChartData: []
+			swiperItemsData: [],
 		};
 	}
 
@@ -53,58 +39,33 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 
 		Promise.all([currentWeatherPromise, fiveDaysThreeHoursWeatherPromise])
 			.then(([currentWeather, fiveDaysThreeHoursWeather]) => {
-				const chartsData = fiveDaysThreeHoursWeather.list.slice(0, 8);
-				let tempChartData: ITempDataItem[] = [];
-				let pressureChartData: IPressureDataItem[] = [];
-				let precipitationChartData: IPrecipitationDataItem[] = [];
-				let windChartData: IWindDataItem[] = [];
+				let swiperItemsData: IWeatherShortInfo[] = [];
 
-				if (!currentWeather.rain) {
-					const weatherItem = chartsData.find(i => i.rain !== undefined);
-					currentWeather.rain = weatherItem && weatherItem.rain;
-				}
+				for (let i = 0; i < 40; i = i + 8) {
+					const dayWeatherData = fiveDaysThreeHoursWeather.list[i];
 
-				if (!currentWeather.snow) {
-					const weatherItem = chartsData.find(i => i.snow !== undefined);
-					currentWeather.snow = weatherItem && weatherItem.snow;
-				}
-
-				chartsData.forEach(i => {
-					const name = i.dt_txt.slice(11, 16);
-					tempChartData.push({
-						name,
-						min: i.main.temp_min,
-						max: i.main.temp_max,
-						avarage: i.main.temp,
-						icon: apiConfig.imgUrl(i.weather.icon)
-					});
-					windChartData.push({ name, speed: i.wind.speed, deg: i.wind.deg });
-					pressureChartData.push({
-						name,
-						pressure: i.main.pressure,
-						grndLevel: i.main.grnd_level,
-						seaLevel: i.main.sea_level
-					});
-
-					const { rain, snow } = i;
-					if (rain || snow) {
-						precipitationChartData.push({ name, rain: rain && rain["3h"] || 0, snow: snow && snow["3h"] || 0 });
-					} else if (precipitationChartData.length > 0) {
-						precipitationChartData.push({ name, rain: 0, snow: 0 });
+					const dayWeatherShortInfo: IWeatherShortInfo = {
+						clouds: dayWeatherData.clouds.all,
+						windSpeed: dayWeatherData.wind.speed,
+						temp: dayWeatherData.main.temp,
+						temp_min: dayWeatherData.main.temp_min,
+						temp_max: dayWeatherData.main.temp_max,
+						pressure: dayWeatherData.main.pressure,
+						humidity: dayWeatherData.main.humidity,
+						description: dayWeatherData.weather[0].description,
+						icon: dayWeatherData.weather[0].icon,
+						date: dayWeatherData.dt,
 					}
-				});
 
-				this.setState({ city, currentWeather, tempChartData, windChartData, pressureChartData, precipitationChartData });
-				console.log(currentWeather, fiveDaysThreeHoursWeather);
-			});
-	}
+					swiperItemsData.push(dayWeatherShortInfo);
+				}
 
-	handleChartsNavBarClick = (e: any, data: { name: string }) => {
-		this.setState({ activeChart: data.name });
+				this.setState({ city, swiperItemsData, currentWeather, fiveDaysThreeHoursWeather });
+			})
 	}
 
 	render() {
-		const { activeChart, city, currentWeather, tempChartData, windChartData, pressureChartData, precipitationChartData } = this.state;
+		const { city, currentWeather, swiperItemsData, fiveDaysThreeHoursWeather } = this.state;
 		const country = currentWeather && currentWeather.sys.country.toUpperCase();
 
 		return <React.Fragment>
@@ -112,19 +73,15 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 			<Header as="h3"><FormattedMessage id="city-weather.header" defaultMessage="Current weather and forecast" /></Header>
 			<div className="row">
 				<div className="col-md-3 col-md-offset-1">
-					{this.state.currentWeather && <WeatherSummaryTable currentWeather={this.state.currentWeather}></WeatherSummaryTable>}
+					{currentWeather && <WeatherSummaryTable currentWeather={currentWeather}></WeatherSummaryTable>}
 				</div>
 				<div className="col-md-7">
-					<ChartsNavBar activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick}></ChartsNavBar>
-					{activeChart === 'Temperature' && <TempComposedChart data={tempChartData}></TempComposedChart>}
-					{activeChart === 'Wind' && <WindLineChart data={windChartData}></WindLineChart>}
-					{activeChart === 'Pressure' && <PressureComposedChart data={pressureChartData}></PressureComposedChart>}
-					{activeChart === 'Precipitation' && <PrecipitationAriaChart data={precipitationChartData}></PrecipitationAriaChart>}
+					{fiveDaysThreeHoursWeather && currentWeather && <ChartsComponent currentWeather={currentWeather} fiveDaysThreeHoursWeather={fiveDaysThreeHoursWeather} />}
 				</div>
 			</div>
 			<div className="row">
 				<div className="col-md-10 col-md-offset-1">
-					<WeatherSwiper slicePerView={3}></WeatherSwiper>
+					{swiperItemsData.length !== 0 && <WeatherSwiper items={swiperItemsData}></WeatherSwiper>}
 				</div>
 			</div>
 		</React.Fragment >;

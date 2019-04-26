@@ -4,6 +4,7 @@ import { ICurrentWeather } from '../../../models/ICurrentWeather';
 import { FormattedMessage } from 'react-intl';
 import { getWindDirection } from '../../../utils/getWindDirection';
 import apiConfig from '../../../api/apiConfig';
+import WeatherIcon from '../../../components/WeatherIcon';
 
 interface IWeatherSummaryTableProps {
 	currentWeather: ICurrentWeather
@@ -16,7 +17,7 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 	return <React.Fragment>
 		<div className="row">
 			<div className="col-xs-6">
-				<span style={{ margin: '20px' }}><img src={apiConfig.imgUrl(icon)} /></span>
+				<span style={{ margin: '20px' }}><WeatherIcon icon={icon}/></span>
 				<span className="float-right" style={{ fontSize: '28px' }}>11°С</span>
 			</div>
 

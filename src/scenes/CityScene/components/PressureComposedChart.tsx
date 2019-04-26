@@ -20,7 +20,6 @@ const CustomTooltip = (props: any) => {
 }
 
 export const PressureComposedChart = (props: IPressureComposedChartProps) => {
-	console.log(props.data);
 	return <ComposedChart width={850} height={320} data={props.data}
 		margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
 		<CartesianGrid strokeDasharray="3 3" />

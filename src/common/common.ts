@@ -1,6 +1,6 @@
 import _ from "lodash";
 import CountriesList from "./CountriesList.json";
-import CitiesList from "./CitiesList.json";
+import CitiesDictionary from "./CitiesList.json";
 
 const Alpha2Dictionary: _.Dictionary<number> = {};
 const Alpha3Dictionary: _.Dictionary<number> = {};
@@ -68,5 +68,5 @@ export const CountryHelperMethods = {
 }
 
 export const getOpenWeatherMapCitiesByCountryAlpha2 = (alpha2: string) => {
-	return (CitiesList as any)[alpha2];
+	return (CitiesDictionary as any)[alpha2];
 }

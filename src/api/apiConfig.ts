@@ -3,5 +3,5 @@ export default {
 	currentWeatherPath: '/weather',
 	fiveDaysThreeHoursWeatherPath: '/forecast',
 	appid: 'd856f0f4053d9762636ad75b01af9894',
-	imgUrl: (img: string) => `http://openweathermap.org/img/w/${img}.png`
+	imgUrl: 'http://openweathermap.org/img/w'
 }
