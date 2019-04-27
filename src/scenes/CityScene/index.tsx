@@ -14,7 +14,6 @@ import ChartsComponent from './components/ChartsComponent';
 interface ICitySceneState {
 	currentWeather?: ICurrentWeather,
 	fiveDaysThreeHoursWeather?: IFiveDaysThreeHoursWeather,
-	city: string,
 	swiperItemsData: IWeatherShortInfo[],
 }
 interface ICitySceneProps extends RouteComponentProps, InjectedIntlProps {
@@ -25,17 +24,15 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 	constructor(props: Readonly<ICitySceneProps>) {
 		super(props);
 
-		const city = (this.props.match.params as any).city
 		this.state = {
-			city,
 			swiperItemsData: [],
 		};
 	}
 
 	componentDidMount = () => {
-		const { city } = this.state
-		const currentWeatherPromise = weatherApi.getCurrentWeather(city);
-		const fiveDaysThreeHoursWeatherPromise = weatherApi.getFiveDaysThreeHoursWeather(city);
+		const cityId = (this.props.match.params as any).city		
+		const currentWeatherPromise = weatherApi.getCurrentWeatherById(cityId);
+		const fiveDaysThreeHoursWeatherPromise = weatherApi.getFiveDaysThreeHoursWeather(cityId);
 
 		Promise.all([currentWeatherPromise, fiveDaysThreeHoursWeatherPromise])
 			.then(([currentWeather, fiveDaysThreeHoursWeather]) => {
@@ -60,31 +57,32 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 					swiperItemsData.push(dayWeatherShortInfo);
 				}
 
-				this.setState({ city, swiperItemsData, currentWeather, fiveDaysThreeHoursWeather });
+				this.setState({ swiperItemsData, currentWeather, fiveDaysThreeHoursWeather });
 			})
 	}
 
 	render() {
-		const { city, currentWeather, swiperItemsData, fiveDaysThreeHoursWeather } = this.state;
+		const { currentWeather, swiperItemsData, fiveDaysThreeHoursWeather } = this.state;
 		const country = currentWeather && currentWeather.sys.country.toUpperCase();
+		const city = currentWeather && currentWeather.name;
 
-		return <React.Fragment>
-			<Header as="h1">{city[0].toUpperCase() + city.substring(1)}, {country}</Header>
+		return <div className="container body">
+			<Header as="h1">{city && city[0].toUpperCase() + city.substring(1) || ''}, {country}</Header>
 			<Header as="h3"><FormattedMessage id="city-weather.header" defaultMessage="Current weather and forecast" /></Header>
 			<div className="row">
-				<div className="col-md-3 col-md-offset-1">
+				<div className="col-md-3">
 					{currentWeather && <WeatherSummaryTable currentWeather={currentWeather}></WeatherSummaryTable>}
 				</div>
-				<div className="col-md-7">
+				<div className="col-md-9">
 					{fiveDaysThreeHoursWeather && currentWeather && <ChartsComponent currentWeather={currentWeather} fiveDaysThreeHoursWeather={fiveDaysThreeHoursWeather} />}
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-md-10 col-md-offset-1">
+				<div className="col-md-12">
 					{swiperItemsData.length !== 0 && <WeatherSwiper items={swiperItemsData}></WeatherSwiper>}
 				</div>
 			</div>
-		</React.Fragment >;
+		</div>;
 	}
 }
 

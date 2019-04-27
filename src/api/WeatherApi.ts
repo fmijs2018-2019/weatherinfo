@@ -9,16 +9,23 @@ class WeatherApi {
 		units: 'metric'
 	}
 
-	getCurrentWeather(city: string) {
+	getCurrentWeatherByName(city: string) {
 		const url = `${apiConfig.mainApiUrl}${apiConfig.currentWeatherPath}`;
 		const config: AxiosRequestConfig = { params: { ...this.defaultParams, q: city } }
 		return axios.get<ICurrentWeather>(url, config)
 			.then(response => response.data);
 	}
 
-	getFiveDaysThreeHoursWeather(city: string) {
+	getCurrentWeatherById(cityId: number) {
+		const url = `${apiConfig.mainApiUrl}${apiConfig.currentWeatherPath}`;
+		const config: AxiosRequestConfig = { params: { ...this.defaultParams, id: cityId } }
+		return axios.get<ICurrentWeather>(url, config)
+			.then(response => response.data);
+	}
+
+	getFiveDaysThreeHoursWeather(cityId: number) {
 		const url = `${apiConfig.mainApiUrl}${apiConfig.fiveDaysThreeHoursWeatherPath}`;
-		const config: AxiosRequestConfig = { params: { ...this.defaultParams, q: city } }
+		const config: AxiosRequestConfig = { params: { ...this.defaultParams, id: cityId } }
 		return axios.get<IFiveDaysThreeHoursWeather>(url, config)
 			.then(response => response.data);
 	}

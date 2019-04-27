@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './SearchResultItem.css'
 import { ICurrentWeather } from '../../../models/ICurrentWeather';
-import apiConfig from '../../../api/apiConfig';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -12,7 +11,7 @@ interface ISearchResultItemProps {
 }
 
 export const SearchResultItem = (props: ISearchResultItemProps) => {
-	const { weather, main, wind, clouds, coord, name: city, sys } = props.currentWeather;
+	const { weather, main, wind, clouds, coord, id, sys, name } = props.currentWeather;
 	const icon = weather && weather.length && weather[0].icon;
 
 	return <div className="row search-result-item">
@@ -25,7 +24,7 @@ export const SearchResultItem = (props: ISearchResultItemProps) => {
 		<div className="col-xs-6">
 			<div className="row">
 				<div className="col-xs-12">
-					<span><Link to={`/cities/${city}`}>{city}, {sys.country} </Link></span>
+					<span><Link to={`/cities/${id}`}>{name}, {sys.country} </Link></span>
 					<span><i className={classNames(sys.country.toLocaleLowerCase(), 'flag')}></i></span>
 				</div>
 			</div>

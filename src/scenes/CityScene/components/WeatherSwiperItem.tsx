@@ -12,7 +12,7 @@ interface IWeatherSwiperItemProps {
 
 export const WeatherSwiperItem = (props: IWeatherSwiperItemProps) => {
 	const { clouds, windSpeed, humidity, temp, temp_max, temp_min, icon, description, date, pressure } = props.weather;
-	console.log(date);
+	
 	return <div className="swiper-item">
 		<div><WeatherIcon icon={icon}/></div>
 		<div><FormattedDate value={new Date(date * 1000)} weekday="long" /></div>

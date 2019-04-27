@@ -14,23 +14,28 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 	const { main: mainWeather, rain, snow, weather: shortWeather, coord: { lon, lat }, wind, clouds } = props.currentWeather;
 	const { icon, main: shortDescription, description } = shortWeather[0];
 
-	return <React.Fragment>
-		<div className="row">
-			<div className="col-xs-6">
-				<span style={{ margin: '20px' }}><WeatherIcon icon={icon}/></span>
-				<span className="float-right" style={{ fontSize: '28px' }}>11°С</span>
-			</div>
+	const style: React.CSSProperties = {
+		marginTop: '-15px',
+		paddingLeft: '25px',
+		fontSize: '16px',
+	}
 
-			<div className="col-xs-6">
-				<div className="row">
-					<div className="col-xs-12"><b>{shortDescription}</b></div>
-					<div className="col-xs-12">{description}</div>
-				</div>
+	return <React.Fragment>
+		<div className="row" >
+			<div className="col-xs-12">
+				<WeatherIcon icon={icon} />
+				<span style={{ fontSize: '28px' }}>{mainWeather.temp}°С</span>
+			</div>
+		</div>
+		<div className="row">
+			<div className="col-xs-12" style={style}>
+				<b>{shortDescription}</b>
+				<span>{' '}{description}</span>
 			</div>
 		</div>
 		<div className="row">
 			<div className="col-xs-12">
-				<Table celled striped>
+				<Table celled striped unstackable color="teal">
 					<Table.Body>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.wind' defaultMessage='Wind' /></Table.Cell>
