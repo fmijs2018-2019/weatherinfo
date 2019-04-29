@@ -25,6 +25,10 @@ class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
 		}
 	}
 
+	componentDidMount() {
+		
+	}
+
 	onSearchValueChange: any = (city: string, code: string) => {
 		const input = code ? city + "," + code : city;
 		weatherApi.getCurrentWeatherByName(input)

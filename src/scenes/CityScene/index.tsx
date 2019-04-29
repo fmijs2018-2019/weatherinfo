@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './index.css';
 import { WeatherSummaryTable } from './components/WeatherSummaryTable';
-import { Header } from 'semantic-ui-react';
+import { Header, Icon, Button } from 'semantic-ui-react';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
 import weatherApi from '../../api/WeatherApi';
@@ -30,7 +30,7 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 	}
 
 	componentDidMount = () => {
-		const cityId = (this.props.match.params as any).city		
+		const cityId = (this.props.match.params as any).city
 		const currentWeatherPromise = weatherApi.getCurrentWeatherById(cityId);
 		const fiveDaysThreeHoursWeatherPromise = weatherApi.getFiveDaysThreeHoursWeather(cityId);
 
@@ -67,8 +67,8 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 		const city = currentWeather && currentWeather.name;
 
 		return <div className="container body">
-			<Header as="h1">{city && city[0].toUpperCase() + city.substring(1) || ''}, {country}</Header>
-			<Header as="h3"><FormattedMessage id="city-weather.header" defaultMessage="Current weather and forecast" /></Header>
+			{city && <Header as="h1">{city && city[0].toUpperCase() + city.substring(1) || ''}, {country}</Header>}
+			{city && <Header as="h3"><FormattedMessage id="city-weather.header" defaultMessage="Current weather and forecast" /></Header>}
 			<div className="row">
 				<div className="col-md-3">
 					{currentWeather && <WeatherSummaryTable currentWeather={currentWeather}></WeatherSummaryTable>}

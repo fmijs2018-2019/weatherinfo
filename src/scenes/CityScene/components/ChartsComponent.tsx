@@ -10,6 +10,7 @@ import { ITempDataItem } from '../../../models/ITempDataItem';
 import { IPressureDataItem } from '../../../models/IPressureDataItem';
 import { IPrecipitationDataItem } from '../../../models/IPrecipitationDataItem';
 import { IWindDataItem } from '../../../models/IWindDataItem';
+import { checkIfInFavourites, addToFavourites } from '../../../common/favourites';
 
 interface IChartsComponentProps {
 	currentWeather: ICurrentWeather,
@@ -21,7 +22,8 @@ interface IChartsComponentState {
 	tempChartData: ITempDataItem[],
 	pressureChartData: IPressureDataItem[],
 	precipitationChartData: IPrecipitationDataItem[],
-	windChartData: IWindDataItem[]
+	windChartData: IWindDataItem[],
+	isInFavourites: boolean
 }
 
 export default class ChartsComponent extends React.Component<IChartsComponentProps, IChartsComponentState> {
@@ -34,7 +36,8 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 			tempChartData: [],
 			pressureChartData: [],
 			precipitationChartData: [],
-			windChartData: []
+			windChartData: [],
+			isInFavourites: checkIfInFavourites(this.props.currentWeather.id)
 		}
 	}
 
@@ -82,18 +85,23 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 			}
 		});
 
-		this.setState({tempChartData, pressureChartData, windChartData, precipitationChartData })
+		this.setState({ tempChartData, pressureChartData, windChartData, precipitationChartData })
 	}
 
 	handleChartsNavBarClick = (e: any, data: { name: string }) => {
 		this.setState({ activeChart: data.name });
 	}
 
+	onHeartClick = () => {
+		addToFavourites(this.props.currentWeather.id);
+		this.setState({ isInFavourites: !this.state.isInFavourites });
+	}
+
 	render = () => {
-		const { activeChart, tempChartData, windChartData, pressureChartData, precipitationChartData } = this.state;
+		const { activeChart, tempChartData, windChartData, pressureChartData, precipitationChartData, isInFavourites } = this.state;
 
 		return <React.Fragment>
-			<ChartsNavBar activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick}></ChartsNavBar>
+			<ChartsNavBar activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick} onHeartClick={this.onHeartClick} isInFavourites={isInFavourites}></ChartsNavBar>
 			{activeChart === 'Temperature' && <TempComposedChart data={tempChartData}></TempComposedChart>}
 			{activeChart === 'Wind' && <WindLineChart data={windChartData}></WindLineChart>}
 			{activeChart === 'Pressure' && <PressureComposedChart data={pressureChartData}></PressureComposedChart>}

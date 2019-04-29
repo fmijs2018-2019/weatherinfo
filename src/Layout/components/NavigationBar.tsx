@@ -20,8 +20,9 @@ class NavigationBar extends React.Component<INavigationBarProps> {
 			<Menu size='huge' pointing secondary >
 				<Menu.Item header>WeatherInfo</Menu.Item>
 				<Menu.Item name='home' color='teal' active={activeItem === 'home'} onClick={this.handleItemClick} />
-				<Menu.Item name='about' color='teal' active={activeItem === 'about'} onClick={this.handleItemClick} />
 				<Menu.Item name='map' color='teal' active={activeItem === 'map'} onClick={this.handleItemClick} />
+				<Menu.Item name='about' color='teal' active={activeItem === 'about'} onClick={this.handleItemClick} />
+				<Menu.Item position="right" name='preferences' color='teal' active={activeItem === 'preferences'} onClick={this.handleItemClick} />
 			</Menu>
 		)
 	}
