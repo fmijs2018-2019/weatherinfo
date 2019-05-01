@@ -7,34 +7,24 @@ import { FormattedMessage } from 'react-intl';
 import WeatherIcon from '../../../components/WeatherIcon';
 import { Icon, Button } from 'semantic-ui-react';
 import { addToFavourites, checkIfInFavourites } from '../../../common/favourites';
+import { HeartButtonIcon } from '../../../components/HeartButtonIcon';
 
 interface ISearchResultItemProps {
 	currentWeather: ICurrentWeather
 }
 
 interface ISearchResultItemState {
-	isInFavourites: boolean;
 }
 
 export class SearchResultItem extends React.Component<ISearchResultItemProps, ISearchResultItemState> {
 	constructor(props: Readonly<ISearchResultItemProps>) {
 		super(props);
 
-		this.state = {
-			isInFavourites: checkIfInFavourites(this.props.currentWeather.id)
-		}
-	}
-
-	onHeartClick = () => {
-		addToFavourites(this.props.currentWeather.id);
-		this.setState({ isInFavourites: !this.state.isInFavourites });
 	}
 
 	render() {
 		const { weather, main, wind, clouds, coord, id, sys, name } = this.props.currentWeather;
 		const icon = weather && weather.length && weather[0].icon;
-
-		const isInFavourites = checkIfInFavourites(id);
 
 		return <div className="row search-result-item">
 			<div className="col-xs-2">
@@ -88,8 +78,7 @@ export class SearchResultItem extends React.Component<ISearchResultItemProps, IS
 				</div>
 			</div>
 			<div className="col-xs-1" style={{display: 'flex', justifyContent: 'center', height: '90px', alignItems: 'center'}}>
-				{isInFavourites && <Button icon onClick={this.onHeartClick}><Icon name="heart" color="red" size="large" /></Button>}
-				{!isInFavourites && <Button icon onClick={this.onHeartClick}><Icon name="heart outline" color="red" size="large" /></Button>}
+				<HeartButtonIcon cityId={id} />
 			</div>
 		</div>;
 	}

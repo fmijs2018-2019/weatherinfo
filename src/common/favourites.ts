@@ -30,7 +30,7 @@ export const checkIfInFavourites = (cityId: number) => {
 	return false;
 }
 
-export const getAllFavourites = () => {
+export const getFavourites = () => {
 	let favouritesStr = localStorage.getItem('favourites');
 
 	return favouritesStr && JSON.parse(favouritesStr) || [];

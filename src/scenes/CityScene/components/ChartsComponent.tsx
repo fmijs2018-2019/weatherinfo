@@ -23,7 +23,6 @@ interface IChartsComponentState {
 	pressureChartData: IPressureDataItem[],
 	precipitationChartData: IPrecipitationDataItem[],
 	windChartData: IWindDataItem[],
-	isInFavourites: boolean
 }
 
 export default class ChartsComponent extends React.Component<IChartsComponentProps, IChartsComponentState> {
@@ -37,7 +36,6 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 			pressureChartData: [],
 			precipitationChartData: [],
 			windChartData: [],
-			isInFavourites: checkIfInFavourites(this.props.currentWeather.id)
 		}
 	}
 
@@ -92,16 +90,11 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 		this.setState({ activeChart: data.name });
 	}
 
-	onHeartClick = () => {
-		addToFavourites(this.props.currentWeather.id);
-		this.setState({ isInFavourites: !this.state.isInFavourites });
-	}
-
 	render = () => {
-		const { activeChart, tempChartData, windChartData, pressureChartData, precipitationChartData, isInFavourites } = this.state;
+		const { activeChart, tempChartData, windChartData, pressureChartData, precipitationChartData } = this.state;
 
 		return <React.Fragment>
-			<ChartsNavBar activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick} onHeartClick={this.onHeartClick} isInFavourites={isInFavourites}></ChartsNavBar>
+			<ChartsNavBar cityId={this.props.currentWeather.id} activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick} ></ChartsNavBar>
 			{activeChart === 'Temperature' && <TempComposedChart data={tempChartData}></TempComposedChart>}
 			{activeChart === 'Wind' && <WindLineChart data={windChartData}></WindLineChart>}
 			{activeChart === 'Pressure' && <PressureComposedChart data={pressureChartData}></PressureComposedChart>}
