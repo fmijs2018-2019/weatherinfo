@@ -10,3 +10,13 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+::-webkit-scrollbar {
+	width: 5px !important;
+	height: 5px !important;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background-color: darkgrey !important;
+	outline: 1px solid slategrey !important;
+	border-radius: 50px !important;
+  }

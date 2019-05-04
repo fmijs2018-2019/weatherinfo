@@ -67,6 +67,35 @@ export const CountryHelperMethods = {
 	}
 }
 
-export const getOpenWeatherMapCitiesByCountryAlpha2 = (alpha2: string) => {
-	return (CitiesDictionary as any)[alpha2];
+export interface IOWMCity {
+	id: number;
+	name: string;
+}
+
+export interface IOWMCitiesByCountry {
+	total: number;
+	list: IOWMCity[];
+}
+
+export const getOpenWeatherMapCitiesByCountryAlpha2 = (alpha2: string, skip: number, take: number): Promise<IOWMCitiesByCountry> => {
+	return new Promise((resove, reject) => {
+		const citiesList = (CitiesDictionary as any)[alpha2] as any[];
+		if (!citiesList) {
+			reject(`No results for found for: ${alpha2}`);
+		}
+		const takeLimited = Math.min(take, 200);
+		const start = Math.max(0, skip);
+		const end = Math.min(citiesList.length, start + takeLimited);
+		const result = citiesList
+			.slice(start, end)
+			.map(v => ({
+				id: v.i,
+				name: v.n,
+			}));
+
+		resove({
+			list: result,
+			total: citiesList.length,
+		});
+	})
 }

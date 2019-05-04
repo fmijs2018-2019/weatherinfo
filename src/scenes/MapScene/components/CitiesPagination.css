@@ -1,0 +1,23 @@
+.cities-pagination {
+	display: flex;
+	width: 100%;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	align-items: center;
+}
+
+.fgrow1 {
+	flex-grow: 1;
+}
+
+.fgrow2 {
+	flex-grow: 2;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}

@@ -24,7 +24,6 @@ export default class WorldMap extends React.Component<IWorldMapProps> {
 
 	constructor(props: IWorldMapProps) {
 		super(props);
-
 	}
 
 	onClick = (country: ICountry) => {

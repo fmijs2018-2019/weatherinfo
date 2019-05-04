@@ -6,7 +6,6 @@ import AboutScene from './scenes/AboutScene';
 import HomeScene from './scenes/HomeScene';
 import CityScene from './scenes/CityScene';
 import MapScene from './scenes/MapScene';
-import CountryScene from './scenes/CountryScene';
 
 class App extends Component {
 	render() {
@@ -16,7 +15,6 @@ class App extends Component {
 				<Route path='/about' component={AboutScene} />
 				<Route path='/cities/:city' component={CityScene} />
 				<Route path='/map' component={MapScene} />
-				<Route path='/country/:code' component={CountryScene} />
 				<Redirect to="/home" />
 			</Switch>
 		</Layout>;
