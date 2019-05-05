@@ -7,6 +7,7 @@ import { CountryHelperMethods } from '../../../common/common';
 
 interface ICitySearchBarProps {
 	onSelect: (city: string, code: string) => void
+	onGetLocation?: (position: Position) => void;
 }
 
 interface ICitySearchBarState {
@@ -41,6 +42,21 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 			this.setState({ loading: false, placesList: placesList });
 		}
 		GoogleApi.getPlacesAutocomplete(input, callback);
+	}
+
+	getLocation = () => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(this.getLocationCallback);
+		} else {
+			alert("Geolocation is not supported by this browser.");
+		}
+	}
+
+	getLocationCallback = (position: Position) => {
+		const { onGetLocation } = this.props;
+		if(onGetLocation) {
+			onGetLocation(position);
+		}
 	}
 	
 	autocompletePlacesDebounced = _.debounce(this.autocompletePlaces, 250);
@@ -85,7 +101,8 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 				size='large'
 				content='Your location'
 				icon='map marker alternate'
-				labelPosition='left' />
+				labelPosition='left'
+				onClick={this.getLocation} />
 		</Segment>;
 	}
 }

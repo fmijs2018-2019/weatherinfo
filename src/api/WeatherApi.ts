@@ -16,6 +16,13 @@ class WeatherApi {
 			.then(response => response.data);
 	}
 
+	getCurrentWeatherByLocation(lon: number, lat: number) {
+		const url = `${apiConfig.mainApiUrl}${apiConfig.currentWeatherPath}`;
+		const config: AxiosRequestConfig = { params: { ...this.defaultParams, lat, lon } }
+		return axios.get<ICurrentWeather>(url, config)
+			.then(response => response.data);
+	}
+
 	getCurrentWeatherById(cityId: number) {
 		const url = `${apiConfig.mainApiUrl}${apiConfig.currentWeatherPath}`;
 		const config: AxiosRequestConfig = { params: { ...this.defaultParams, id: cityId } }

@@ -56,11 +56,20 @@ class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
 		this.setState({ favourites: getFavourites() });
 	}
 
+	onGetLocation = (position: Position) => {
+		weatherApi.getCurrentWeatherByLocation(position.coords.longitude, position.coords.latitude)
+			.then(res => {
+				this.setState({ cityWeatherItems: [res], cityNotFound: false });
+			}).catch(error => {
+				this.setState({ cityWeatherItems: [], cityNotFound: true })
+			});
+	}
+
 	render() {
 		const { cityNotFound, cityWeatherItems } = this.state;
 		return <React.Fragment>
 			<div className="search-container">
-				<CitySearchBar onSelect={this.onSearchValueChange} ></CitySearchBar>
+				<CitySearchBar onSelect={this.onSearchValueChange} onGetLocation={this.onGetLocation} ></CitySearchBar>
 			</div>
 			<div className="search-result-container">
 				{cityNotFound && <Message color='teal'>No <b>WeatherInfo</b> for selected city :(</Message>}
