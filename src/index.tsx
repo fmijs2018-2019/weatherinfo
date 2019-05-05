@@ -9,10 +9,23 @@ import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import locale_en from 'react-intl/locale-data/en';
+import locale_bg from 'react-intl/locale-data/bg';
+import messages_bg from "./translations/bg.json";
+import messages_en from "./translations/en.json";
+
+const messages: any = {
+    'bg': messages_bg,
+    'en': messages_en
+};
+
+export const language = 'bg';
+
+addLocaleData([...locale_en, ...locale_bg]);
 
 ReactDOM.render(
-	<IntlProvider locale="en">
+	<IntlProvider locale={language} messages={messages[language]}>
 		<BrowserRouter>
 			<App />
 		</BrowserRouter>
