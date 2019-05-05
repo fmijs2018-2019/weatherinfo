@@ -1,3 +1,5 @@
+import { ISettings } from "../models/ISettings";
+
 export const addToFavourites = (cityId: number) => {
 	let favouritesStr = localStorage.getItem('favourites');
 	let favourites: number[];
@@ -47,4 +49,31 @@ export const getFavourites = () => {
 	let favouritesStr = localStorage.getItem('favourites');
 
 	return favouritesStr && JSON.parse(favouritesStr) || [];
+}
+
+export const getSettingsOrDefault = () => {
+	let settingsStr = localStorage.getItem('settings');
+	const defaultSettings: ISettings = {
+		language: 'en',
+		tempMetric: 'c',
+		hoursFormat: '24'
+	}
+
+	return settingsStr ? JSON.parse(settingsStr) : defaultSettings;
+}
+
+export const setSettings = (settings: ISettings) => {
+	if (settings) {
+		localStorage.setItem('settings', JSON.stringify(settings));
+	}
+}
+
+export const resetSettings = () => {
+	const defaultSettings: ISettings = {
+		language: 'en',
+		tempMetric: 'c',
+		hoursFormat: '24'
+	}
+	localStorage.setItem('settings', JSON.stringify(defaultSettings));
+	return defaultSettings;
 }

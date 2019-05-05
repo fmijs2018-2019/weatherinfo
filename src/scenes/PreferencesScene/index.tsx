@@ -2,8 +2,9 @@ import * as React from 'react';
 import PreferencesNavBar from './components/PreferencesNavBar';
 import { FavouritesSection } from './components/FavouritesSection';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
-import { getFavourites, removeFromFavourites } from '../../common/favourites';
+import { getFavourites, removeFromFavourites } from '../../common/localStorageService';
 import weatherApi from '../../api/WeatherApi';
+import { SettingsSection } from './components/SettingsSection';
 
 interface IPreferencesSceneState {
 	activeTab: string,
@@ -59,8 +60,8 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 			activePage--;
 		}
 
-		if(activePage === 0) {
-			this.setState({pageItems: [], totalPages: 0, activePage})
+		if (activePage === 0) {
+			this.setState({ pageItems: [], totalPages: 0, activePage })
 		}
 
 		let skip = (activePage - 1) * this.itemsPerPage;
@@ -118,7 +119,7 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 				onPageChange={this.onPageChange}
 				totalPages={totalPages}
 				deleteFromFavourites={this.deleteFromFavourites} />}
-			{activeTab === 'Settigns' && <div></div>}
+			{activeTab === 'Settings' && <SettingsSection />}
 		</div>
 	}
 }

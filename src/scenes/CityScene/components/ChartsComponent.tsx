@@ -10,7 +10,7 @@ import { ITempDataItem } from '../../../models/ITempDataItem';
 import { IPressureDataItem } from '../../../models/IPressureDataItem';
 import { IPrecipitationDataItem } from '../../../models/IPrecipitationDataItem';
 import { IWindDataItem } from '../../../models/IWindDataItem';
-import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../../common/favourites';
+import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../../common/localStorageService';
 
 interface IChartsComponentProps {
 	currentWeather: ICurrentWeather,

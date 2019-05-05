@@ -5,7 +5,7 @@ import weatherApi from '../../api/WeatherApi';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
 import { Message, Icon } from 'semantic-ui-react';
 import { ListWeatherItem } from '../../components/ListWeatherItem';
-import { removeFromFavourites, addToFavourites, checkIfInFavourites, getFavourites } from '../../common/favourites';
+import { removeFromFavourites, addToFavourites, checkIfInFavourites, getFavourites } from '../../common/localStorageService';
 import { HeartToggleIcon } from '../../components/HeartToggleIcon';
 
 interface IHomeSceneState {
