@@ -28,10 +28,10 @@ export default class CoutnryInfoPanel extends React.Component<ICountryInfoPanelP
 			<div className="panel">
 				<div className="panel-header">
 					<div style={{ textAlign: "right" }}>
-						<Icon onClick={onClose} name="times circle outline" className="panel-close-icon" />
+						<Icon onClick={onClose} name="times circle outline" className="panel-close-icon" color="teal" />
 					</div>
 					<Header as='h2' textAlign="center" style={{ margin: "-5px 10px 10px 10px" }}>
-						{country.properties.name}
+						{cities.country ? <Link to={`cities/${cities.country.id}`}>{cities.country.name}</Link> : country.properties.name}
 					</Header>
 				</div>
 				<div className="panel-body">

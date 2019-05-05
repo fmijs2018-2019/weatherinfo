@@ -1,6 +1,7 @@
 import _ from "lodash";
 import CountriesList from "./CountriesList.json";
 import CitiesDictionary from "./CitiesList.json";
+import OWMCountriesList from './OWMCountriesList.json';
 
 const Alpha2Dictionary: _.Dictionary<number> = {};
 const Alpha3Dictionary: _.Dictionary<number> = {};
@@ -72,9 +73,16 @@ export interface IOWMCity {
 	name: string;
 }
 
+export interface IOWMCountry {
+	id: number;
+	name: string;
+	country: string;
+}
+
 export interface IOWMCitiesByCountry {
 	total: number;
 	list: IOWMCity[];
+	country?: IOWMCountry;
 }
 
 export const getOpenWeatherMapCitiesByCountryAlpha2 = (alpha2: string, skip: number, take: number): Promise<IOWMCitiesByCountry> => {
@@ -93,9 +101,12 @@ export const getOpenWeatherMapCitiesByCountryAlpha2 = (alpha2: string, skip: num
 				name: v.n,
 			}));
 
+		const country = OWMCountriesList.find(x => x.country === alpha2);
+
 		resove({
 			list: result,
 			total: citiesList.length,
+			country
 		});
 	})
 }

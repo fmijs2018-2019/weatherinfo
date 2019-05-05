@@ -24,5 +24,13 @@ export const messages = defineMessages({
 	searchPlaceholder: {
 		id: 'search.placeholder',
 		defaultMessage: 'Search city...'
+	},
+	favourites: {
+		id: 'preferences.favourites',
+		defaultMessage: 'Favourites'
+	},
+	settings: {
+		id: 'preferences.settings',
+		defaultMessage: 'Settings'
 	}
 })

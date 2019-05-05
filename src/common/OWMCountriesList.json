@@ -1,0 +1,1237 @@
+[
+	{
+		"id": 3041565,
+		"name": "Principality of Andorra",
+		"country": "AD"
+	},
+	{
+		"id": 1149361,
+		"name": "Islamic Republic of Afghanistan",
+		"country": "AF"
+	},
+	{
+		"id": 3573511,
+		"name": "Anguilla",
+		"country": "AI"
+	},
+	{
+		"id": 783754,
+		"name": "Republic of Albania",
+		"country": "AL"
+	},
+	{
+		"id": 174982,
+		"name": "Republic of Armenia",
+		"country": "AM"
+	},
+	{
+		"id": 3351879,
+		"name": "Republic of Angola",
+		"country": "AO"
+	},
+	{
+		"id": 3865483,
+		"name": "Argentine Republic",
+		"country": "AR"
+	},
+	{
+		"id": 2782113,
+		"name": "Republic of Austria",
+		"country": "AT"
+	},
+	{
+		"id": 2077456,
+		"name": "Commonwealth of Australia",
+		"country": "AU"
+	},
+	{
+		"id": 3577279,
+		"name": "Aruba",
+		"country": "AW"
+	},
+	{
+		"id": 587116,
+		"name": "Republic of Azerbaijan",
+		"country": "AZ"
+	},
+	{
+		"id": 3374084,
+		"name": "Barbados",
+		"country": "BB"
+	},
+	{
+		"id": 1210997,
+		"name": "People’s Republic of Bangladesh",
+		"country": "BD"
+	},
+	{
+		"id": 2802361,
+		"name": "Kingdom of Belgium",
+		"country": "BE"
+	},
+	{
+		"id": 732800,
+		"name": "Republic of Bulgaria",
+		"country": "BG"
+	},
+	{
+		"id": 290291,
+		"name": "Kingdom of Bahrain",
+		"country": "BH"
+	},
+	{
+		"id": 433561,
+		"name": "Republic of Burundi",
+		"country": "BI"
+	},
+	{
+		"id": 2395170,
+		"name": "Republic of Benin",
+		"country": "BJ"
+	},
+	{
+		"id": 3573345,
+		"name": "Bermuda",
+		"country": "BM"
+	},
+	{
+		"id": 3469034,
+		"name": "Federative Republic of Brazil",
+		"country": "BR"
+	},
+	{
+		"id": 3572887,
+		"name": "Commonwealth of The Bahamas",
+		"country": "BS"
+	},
+	{
+		"id": 1252634,
+		"name": "Kingdom of Bhutan",
+		"country": "BT"
+	},
+	{
+		"id": 933860,
+		"name": "Republic of Botswana",
+		"country": "BW"
+	},
+	{
+		"id": 630336,
+		"name": "Republic of Belarus",
+		"country": "BY"
+	},
+	{
+		"id": 3582678,
+		"name": "Belize",
+		"country": "BZ"
+	},
+	{
+		"id": 6251999,
+		"name": "Canada",
+		"country": "CA"
+	},
+	{
+		"id": 203312,
+		"name": "Democratic Republic of the Congo",
+		"country": "CD"
+	},
+	{
+		"id": 2260494,
+		"name": "Republic of the Congo",
+		"country": "CG"
+	},
+	{
+		"id": 2287781,
+		"name": "Republic of Côte d’Ivoire",
+		"country": "CI"
+	},
+	{
+		"id": 3895114,
+		"name": "Republic of Chile",
+		"country": "CL"
+	},
+	{
+		"id": 2233387,
+		"name": "Republic of Cameroon",
+		"country": "CM"
+	},
+	{
+		"id": 1814991,
+		"name": "People’s Republic of China",
+		"country": "CN"
+	},
+	{
+		"id": 3686110,
+		"name": "Republic of Colombia",
+		"country": "CO"
+	},
+	{
+		"id": 3624060,
+		"name": "Republic of Costa Rica",
+		"country": "CR"
+	},
+	{
+		"id": 3562981,
+		"name": "Republic of Cuba",
+		"country": "CU"
+	},
+	{
+		"id": 7626836,
+		"name": "Land Curaçao",
+		"country": "CW"
+	},
+	{
+		"id": 146669,
+		"name": "Republic of Cyprus",
+		"country": "CY"
+	},
+	{
+		"id": 2921044,
+		"name": "Federal Republic of Germany",
+		"country": "DE"
+	},
+	{
+		"id": 223816,
+		"name": "Republic of Djibouti",
+		"country": "DJ"
+	},
+	{
+		"id": 2623032,
+		"name": "Kingdom of Denmark",
+		"country": "DK"
+	},
+	{
+		"id": 3575830,
+		"name": "Dominica",
+		"country": "DM"
+	},
+	{
+		"id": 2589581,
+		"name": "People’s Democratic Republic of Algeria",
+		"country": "DZ"
+	},
+	{
+		"id": 3658394,
+		"name": "Republic of Ecuador",
+		"country": "EC"
+	},
+	{
+		"id": 453733,
+		"name": "Republic of Estonia",
+		"country": "EE"
+	},
+	{
+		"id": 357994,
+		"name": "Arab Republic of Egypt",
+		"country": "EG"
+	},
+	{
+		"id": 338010,
+		"name": "State of Eritrea",
+		"country": "ER"
+	},
+	{
+		"id": 2510769,
+		"name": "Kingdom of Spain",
+		"country": "ES"
+	},
+	{
+		"id": 337996,
+		"name": "Federal Democratic Republic of Ethiopia",
+		"country": "ET"
+	},
+	{
+		"id": 660013,
+		"name": "Republic of Finland",
+		"country": "FI"
+	},
+	{
+		"id": 2205218,
+		"name": "Republic of Fiji",
+		"country": "FJ"
+	},
+	{
+		"id": 3017382,
+		"name": "Republic of France",
+		"country": "FR"
+	},
+	{
+		"id": 2635167,
+		"name": "United Kingdom of Great Britain and Northern Ireland",
+		"country": "GB"
+	},
+	{
+		"id": 3580239,
+		"name": "Grenada",
+		"country": "GD"
+	},
+	{
+		"id": 614540,
+		"name": "Georgia",
+		"country": "GE"
+	},
+	{
+		"id": 3042362,
+		"name": "Bailiwick of Guernsey",
+		"country": "GG"
+	},
+	{
+		"id": 2300660,
+		"name": "Republic of Ghana",
+		"country": "GH"
+	},
+	{
+		"id": 2411586,
+		"name": "Gibraltar",
+		"country": "GI"
+	},
+	{
+		"id": 3425505,
+		"name": "Greenland",
+		"country": "GL"
+	},
+	{
+		"id": 2413451,
+		"name": "Gambia",
+		"country": "GM"
+	},
+	{
+		"id": 2420477,
+		"name": "Republic of Guinea",
+		"country": "GN"
+	},
+	{
+		"id": 3579143,
+		"name": "Guadeloupe",
+		"country": "GP"
+	},
+	{
+		"id": 2309096,
+		"name": "Republic of Equatorial Guinea",
+		"country": "GQ"
+	},
+	{
+		"id": 390903,
+		"name": "Hellenic Republic",
+		"country": "GR"
+	},
+	{
+		"id": 3474415,
+		"name": "South Georgia and the South Sandwich Islands",
+		"country": "GS"
+	},
+	{
+		"id": 3595528,
+		"name": "Republic of Guatemala",
+		"country": "GT"
+	},
+	{
+		"id": 2372248,
+		"name": "Republic of Guinea-Bissau",
+		"country": "GW"
+	},
+	{
+		"id": 3378535,
+		"name": "Co-operative Republic of Guyana",
+		"country": "GY"
+	},
+	{
+		"id": 3608932,
+		"name": "Republic of Honduras",
+		"country": "HN"
+	},
+	{
+		"id": 3615067,
+		"name": "Armenia",
+		"country": "HN"
+	},
+	{
+		"id": 3202326,
+		"name": "Republic of Croatia",
+		"country": "HR"
+	},
+	{
+		"id": 3723988,
+		"name": "Republic of Haiti",
+		"country": "HT"
+	},
+	{
+		"id": 719819,
+		"name": "Hungary",
+		"country": "HU"
+	},
+	{
+		"id": 1643084,
+		"name": "Republic of Indonesia",
+		"country": "ID"
+	},
+	{
+		"id": 2963597,
+		"name": "Ireland",
+		"country": "IE"
+	},
+	{
+		"id": 294640,
+		"name": "State of Israel",
+		"country": "IL"
+	},
+	{
+		"id": 1269750,
+		"name": "Republic of India",
+		"country": "IN"
+	},
+	{
+		"id": 99237,
+		"name": "Republic of Iraq",
+		"country": "IQ"
+	},
+	{
+		"id": 2629691,
+		"name": "Republic of Iceland",
+		"country": "IS"
+	},
+	{
+		"id": 3171654,
+		"name": "Palau",
+		"country": "IT"
+	},
+	{
+		"id": 3042142,
+		"name": "Bailiwick of Jersey",
+		"country": "JE"
+	},
+	{
+		"id": 3489940,
+		"name": "Jamaica",
+		"country": "JM"
+	},
+	{
+		"id": 248816,
+		"name": "Hashemite Kingdom of Jordan",
+		"country": "JO"
+	},
+	{
+		"id": 1861060,
+		"name": "Japan",
+		"country": "JP"
+	},
+	{
+		"id": 192950,
+		"name": "Republic of Kenya",
+		"country": "KE"
+	},
+	{
+		"id": 1831722,
+		"name": "Kingdom of Cambodia",
+		"country": "KH"
+	},
+	{
+		"id": 4030945,
+		"name": "Republic of Kiribati",
+		"country": "KI"
+	},
+	{
+		"id": 921929,
+		"name": "Union of the Comoros",
+		"country": "KM"
+	},
+	{
+		"id": 285570,
+		"name": "State of Kuwait",
+		"country": "KW"
+	},
+	{
+		"id": 1522867,
+		"name": "Republic of Kazakhstan",
+		"country": "KZ"
+	},
+	{
+		"id": 272103,
+		"name": "Republic of Lebanon",
+		"country": "LB"
+	},
+	{
+		"id": 3042058,
+		"name": "Principality of Liechtenstein",
+		"country": "LI"
+	},
+	{
+		"id": 2275384,
+		"name": "Republic of Liberia",
+		"country": "LR"
+	},
+	{
+		"id": 932692,
+		"name": "Kingdom of Lesotho",
+		"country": "LS"
+	},
+	{
+		"id": 597427,
+		"name": "Republic of Lithuania",
+		"country": "LT"
+	},
+	{
+		"id": 2960316,
+		"name": "Luxembourg",
+		"country": "LU"
+	},
+	{
+		"id": 458258,
+		"name": "Republic of Latvia",
+		"country": "LV"
+	},
+	{
+		"id": 2215636,
+		"name": "Libya",
+		"country": "LY"
+	},
+	{
+		"id": 2542007,
+		"name": "Kingdom of Morocco",
+		"country": "MA"
+	},
+	{
+		"id": 2993457,
+		"name": "Principality of Monaco",
+		"country": "MC"
+	},
+	{
+		"id": 3194884,
+		"name": "Montenegro",
+		"country": "ME"
+	},
+	{
+		"id": 1062947,
+		"name": "Republic of Madagascar",
+		"country": "MG"
+	},
+	{
+		"id": 2453866,
+		"name": "Republic of Mali",
+		"country": "ML"
+	},
+	{
+		"id": 2029969,
+		"name": "Mongolia",
+		"country": "MN"
+	},
+	{
+		"id": 3570311,
+		"name": "Martinique",
+		"country": "MQ"
+	},
+	{
+		"id": 2378080,
+		"name": "Islamic Republic of Mauritania",
+		"country": "MR"
+	},
+	{
+		"id": 3578097,
+		"name": "Montserrat",
+		"country": "MS"
+	},
+	{
+		"id": 2562770,
+		"name": "Republic of Malta",
+		"country": "MT"
+	},
+	{
+		"id": 934292,
+		"name": "Republic of Mauritius",
+		"country": "MU"
+	},
+	{
+		"id": 1282028,
+		"name": "Republic of Maldives",
+		"country": "MV"
+	},
+	{
+		"id": 927384,
+		"name": "Republic of Malawi",
+		"country": "MW"
+	},
+	{
+		"id": 3996063,
+		"name": "Mexico",
+		"country": "MX"
+	},
+	{
+		"id": 1733045,
+		"name": "Malaysia",
+		"country": "MY"
+	},
+	{
+		"id": 1036973,
+		"name": "Republic of Mozambique",
+		"country": "MZ"
+	},
+	{
+		"id": 3355338,
+		"name": "Republic of Namibia",
+		"country": "NA"
+	},
+	{
+		"id": 2440476,
+		"name": "Republic of Niger",
+		"country": "NE"
+	},
+	{
+		"id": 2328926,
+		"name": "Federal Republic of Nigeria",
+		"country": "NG"
+	},
+	{
+		"id": 3617476,
+		"name": "Republic of Nicaragua",
+		"country": "NI"
+	},
+	{
+		"id": 3617459,
+		"name": "Nueva Guinea",
+		"country": "NI"
+	},
+	{
+		"id": 2750405,
+		"name": "Kingdom of the Netherlands",
+		"country": "NL"
+	},
+	{
+		"id": 3144096,
+		"name": "Kingdom of Norway",
+		"country": "NO"
+	},
+	{
+		"id": 1282988,
+		"name": "Kingdom of Nepal",
+		"country": "NP"
+	},
+	{
+		"id": 2110425,
+		"name": "Nauru",
+		"country": "NR"
+	},
+	{
+		"id": 4036232,
+		"name": "Niue",
+		"country": "NU"
+	},
+	{
+		"id": 286963,
+		"name": "Sultanate of Oman",
+		"country": "OM"
+	},
+	{
+		"id": 3703430,
+		"name": "Republic of Panama",
+		"country": "PA"
+	},
+	{
+		"id": 3932488,
+		"name": "Republic of Peru",
+		"country": "PE"
+	},
+	{
+		"id": 2088628,
+		"name": "Independent State of Papua New Guinea",
+		"country": "PG"
+	},
+	{
+		"id": 1694008,
+		"name": "Republic of the Philippines",
+		"country": "PH"
+	},
+	{
+		"id": 1168579,
+		"name": "Islamic Republic of Pakistan",
+		"country": "PK"
+	},
+	{
+		"id": 798544,
+		"name": "Republic of Poland",
+		"country": "PL"
+	},
+	{
+		"id": 4030699,
+		"name": "Henderson, Ducie and Oeno Islands Pitcairn",
+		"country": "PN"
+	},
+	{
+		"id": 4566966,
+		"name": "Puerto Rico",
+		"country": "PR"
+	},
+	{
+		"id": 6254930,
+		"name": "Palestine",
+		"country": "PS"
+	},
+	{
+		"id": 2264397,
+		"name": "Portuguese Republic",
+		"country": "PT"
+	},
+	{
+		"id": 1559582,
+		"name": "Republic of Palau",
+		"country": "PW"
+	},
+	{
+		"id": 3437598,
+		"name": "Republic of Paraguay",
+		"country": "PY"
+	},
+	{
+		"id": 3437654,
+		"name": "Nueva Colombia",
+		"country": "PY"
+	},
+	{
+		"id": 289688,
+		"name": "State of Qatar",
+		"country": "QA"
+	},
+	{
+		"id": 6690284,
+		"name": "Réunion",
+		"country": "RE"
+	},
+	{
+		"id": 6290252,
+		"name": "Serbia",
+		"country": "RS"
+	},
+	{
+		"id": 49518,
+		"name": "Republic of Rwanda",
+		"country": "RW"
+	},
+	{
+		"id": 241170,
+		"name": "Republic of Seychelles",
+		"country": "SC"
+	},
+	{
+		"id": 366755,
+		"name": "Republic of the Sudan",
+		"country": "SD"
+	},
+	{
+		"id": 2661886,
+		"name": "Kingdom of Sweden",
+		"country": "SE"
+	},
+	{
+		"id": 1880251,
+		"name": "Republic of Singapore",
+		"country": "SG"
+	},
+	{
+		"id": 3190538,
+		"name": "Republic of Slovenia",
+		"country": "SI"
+	},
+	{
+		"id": 2245662,
+		"name": "Republic of Senegal",
+		"country": "SN"
+	},
+	{
+		"id": 51537,
+		"name": "Somalia",
+		"country": "SO"
+	},
+	{
+		"id": 3382998,
+		"name": "Republic of Suriname",
+		"country": "SR"
+	},
+	{
+		"id": 7909807,
+		"name": "South Sudan",
+		"country": "SS"
+	},
+	{
+		"id": 3586550,
+		"name": "El Congo",
+		"country": "SV"
+	},
+	{
+		"id": 3587333,
+		"name": "Armenia",
+		"country": "SV"
+	},
+	{
+		"id": 2434508,
+		"name": "Republic of Chad",
+		"country": "TD"
+	},
+	{
+		"id": 1605651,
+		"name": "Kingdom of Thailand",
+		"country": "TH"
+	},
+	{
+		"id": 1220409,
+		"name": "Republic of Tajikistan",
+		"country": "TJ"
+	},
+	{
+		"id": 1966436,
+		"name": "Democratic Republic of Timor-Leste",
+		"country": "TL"
+	},
+	{
+		"id": 1218197,
+		"name": "Turkmenistan",
+		"country": "TM"
+	},
+	{
+		"id": 4032283,
+		"name": "Kingdom of Tonga",
+		"country": "TO"
+	},
+	{
+		"id": 298795,
+		"name": "Republic of Turkey",
+		"country": "TR"
+	},
+	{
+		"id": 3573591,
+		"name": "Republic of Trinidad and Tobago",
+		"country": "TT"
+	},
+	{
+		"id": 2110297,
+		"name": "Tuvalu",
+		"country": "TV"
+	},
+	{
+		"id": 690791,
+		"name": "Ukraine",
+		"country": "UA"
+	},
+	{
+		"id": 226074,
+		"name": "Republic of Uganda",
+		"country": "UG"
+	},
+	{
+		"id": 3439705,
+		"name": "Oriental Republic of Uruguay",
+		"country": "UY"
+	},
+	{
+		"id": 1512440,
+		"name": "Republic of Uzbekistan",
+		"country": "UZ"
+	},
+	{
+		"id": 2134431,
+		"name": "Republic of Vanuatu",
+		"country": "VU"
+	},
+	{
+		"id": 4034894,
+		"name": "Independent State of Samoa",
+		"country": "WS"
+	},
+	{
+		"id": 69543,
+		"name": "Republic of Yemen",
+		"country": "YE"
+	},
+	{
+		"id": 1024031,
+		"name": "Mayotte",
+		"country": "YT"
+	},
+	{
+		"id": 953987,
+		"name": "Republic of South Africa",
+		"country": "ZA"
+	},
+	{
+		"id": 895949,
+		"name": "Republic of Zambia",
+		"country": "ZM"
+	},
+	{
+		"id": 878675,
+		"name": "Republic of Zimbabwe",
+		"country": "ZW"
+	},
+	{
+		"id": 6252001,
+		"name": "United States",
+		"country": "US"
+	},
+	{
+		"id": 3576396,
+		"name": "Antigua and Barbuda",
+		"country": "AG"
+	},
+	{
+		"id": 3923057,
+		"name": "Plurinational State of Bolivia",
+		"country": "BO"
+	},
+	{
+		"id": 3277605,
+		"name": "Bosnia and Herzegovina",
+		"country": "BA"
+	},
+	{
+		"id": 2361809,
+		"name": "Burkina Faso",
+		"country": "BF"
+	},
+	{
+		"id": 3580718,
+		"name": "Cayman Islands",
+		"country": "KY"
+	},
+	{
+		"id": 239880,
+		"name": "Central African Republic",
+		"country": "CF"
+	},
+	{
+		"id": 2078138,
+		"name": "Territory of Christmas Island",
+		"country": "CX"
+	},
+	{
+		"id": 1547376,
+		"name": "Territory of Cocos (Keeling) Islands",
+		"country": "CC"
+	},
+	{
+		"id": 1899402,
+		"name": "Cook Islands",
+		"country": "CK"
+	},
+	{
+		"id": 3077311,
+		"name": "Czech Republic",
+		"country": "CZ"
+	},
+	{
+		"id": 3508796,
+		"name": "Dominican Republic",
+		"country": "DO"
+	},
+	{
+		"id": 934841,
+		"name": "Kingdom of Swaziland",
+		"country": "SZ"
+	},
+	{
+		"id": 3474414,
+		"name": "Falkland Islands (Islas Malvinas)",
+		"country": "FK"
+	},
+	{
+		"id": 2622320,
+		"name": "Faroe Islands",
+		"country": "FO"
+	},
+	{
+		"id": 6690606,
+		"name": "Guyane",
+		"country": "GF"
+	},
+	{
+		"id": 4030656,
+		"name": "Polynésie Française",
+		"country": "PF"
+	},
+	{
+		"id": 1546748,
+		"name": "Territory of the French Southern and Antarctic Lands",
+		"country": "TF"
+	},
+	{
+		"id": 2400553,
+		"name": "Gabonese Republic",
+		"country": "GA"
+	},
+	{
+		"id": 4043988,
+		"name": "Guam",
+		"country": "GU"
+	},
+	{
+		"id": 3164670,
+		"name": "State of the Vatican City",
+		"country": "VA"
+	},
+	{
+		"id": 1819730,
+		"name": "Hong Kong Special Administrative Region",
+		"country": "HK"
+	},
+	{
+		"id": 130758,
+		"name": "Islamic Republic of Iran",
+		"country": "IR"
+	},
+	{
+		"id": 3042225,
+		"name": "Isle of Man",
+		"country": "IM"
+	},
+	{
+		"id": 1873107,
+		"name": "Democratic People’s Republic of Korea",
+		"country": "KP"
+	},
+	{
+		"id": 1835841,
+		"name": "Republic of Korea",
+		"country": "KR"
+	},
+	{
+		"id": 1527747,
+		"name": "Kyrgyz Republic",
+		"country": "KG"
+	},
+	{
+		"id": 1655842,
+		"name": "Lao People’s Democratic Republic",
+		"country": "LA"
+	},
+	{
+		"id": 1821275,
+		"name": "Macau Special Administrative Region",
+		"country": "MO"
+	},
+	{
+		"id": 2081918,
+		"name": "Federated States of Micronesia",
+		"country": "FM"
+	},
+	{
+		"id": 617790,
+		"name": "Republic of Moldova",
+		"country": "MD"
+	},
+	{
+		"id": 1327865,
+		"name": "Union of Burma",
+		"country": "MM"
+	},
+	{
+		"id": 2139685,
+		"name": "Nouvelle-Calédonie",
+		"country": "NC"
+	},
+	{
+		"id": 2186224,
+		"name": "New Zealand",
+		"country": "NZ"
+	},
+	{
+		"id": 2155115,
+		"name": "Territory of Norfolk Island",
+		"country": "NF"
+	},
+	{
+		"id": 718075,
+		"name": "Republic of Macedonia",
+		"country": "MK"
+	},
+	{
+		"id": 4041468,
+		"name": "Commonwealth of the Northern Mariana Islands",
+		"country": "MP"
+	},
+	{
+		"id": 661882,
+		"name": "Ahvenanmaan Lääni",
+		"country": "AX"
+	},
+	{
+		"id": 5880801,
+		"name": "American Samoa, Territory of",
+		"country": "AS"
+	},
+	{
+		"id": 6255152,
+		"name": "Antarctica",
+		"country": ""
+	},
+	{
+		"id": 7626844,
+		"name": "Bonaire, Saint Eustatius and Saba",
+		"country": "BQ"
+	},
+	{
+		"id": 1820814,
+		"name": "Negara Brunei Darussalam",
+		"country": "BN"
+	},
+	{
+		"id": 3374766,
+		"name": "Republic of Cape Verde",
+		"country": "CV"
+	},
+	{
+		"id": 2080185,
+		"name": "Republic of the Marshall Islands",
+		"country": "MH"
+	},
+	{
+		"id": 798549,
+		"name": "România",
+		"country": "RO"
+	},
+	{
+		"id": 2017370,
+		"name": "Russian Federation",
+		"country": "RU"
+	},
+	{
+		"id": 3578476,
+		"name": "Saint-Barthélemy",
+		"country": "BL"
+	},
+	{
+		"id": 3370751,
+		"name": "Ascension, and Tristan da Cunha Saint Helena",
+		"country": "SH"
+	},
+	{
+		"id": 3575174,
+		"name": "Federation of Saint Kitts and Nevis",
+		"country": "KN"
+	},
+	{
+		"id": 3576468,
+		"name": "Saint Lucia",
+		"country": "LC"
+	},
+	{
+		"id": 3578421,
+		"name": "Saint-Martin",
+		"country": "MF"
+	},
+	{
+		"id": 3424932,
+		"name": "Saint-Pierre et Miquelon",
+		"country": "PM"
+	},
+	{
+		"id": 3577815,
+		"name": "Saint Vincent and the Grenadines",
+		"country": "VC"
+	},
+	{
+		"id": 3168068,
+		"name": "Repubblica di San Marino",
+		"country": "SM"
+	},
+	{
+		"id": 2410758,
+		"name": "Sao Tome and Principe",
+		"country": "ST"
+	},
+	{
+		"id": 102358,
+		"name": "Kingdom of Saudi Arabia",
+		"country": "SA"
+	},
+	{
+		"id": 2403846,
+		"name": "Republic of Sierra Leone",
+		"country": "SL"
+	},
+	{
+		"id": 7609695,
+		"name": "Land Sint Maarten",
+		"country": "SX"
+	},
+	{
+		"id": 3057568,
+		"name": "Slovak Republic",
+		"country": "SK"
+	},
+	{
+		"id": 2103350,
+		"name": "Solomon Islands",
+		"country": "SB"
+	},
+	{
+		"id": 1227603,
+		"name": "Democratic Socialist Republic of Sri Lanka",
+		"country": "LK"
+	},
+	{
+		"id": 7521757,
+		"name": "Svalbard",
+		"country": "SJ"
+	},
+	{
+		"id": 2658434,
+		"name": "Swiss Confederation",
+		"country": "CH"
+	},
+	{
+		"id": 163843,
+		"name": "Syrian Arab Republic",
+		"country": "SY"
+	},
+	{
+		"id": 1668284,
+		"name": "Taiwan",
+		"country": "TW"
+	},
+	{
+		"id": 149590,
+		"name": "United Republic of Tanzania",
+		"country": "TZ"
+	},
+	{
+		"id": 2363686,
+		"name": "Togolese Republic",
+		"country": "TG"
+	},
+	{
+		"id": 2464461,
+		"name": "Tunisian Republic",
+		"country": "TN"
+	},
+	{
+		"id": 3576916,
+		"name": "Turks and Caicos Islands",
+		"country": "TC"
+	},
+	{
+		"id": 290557,
+		"name": "United Arab Emirates",
+		"country": "AE"
+	},
+	{
+		"id": 3625428,
+		"name": "Bolivarian Republic of Venezuela",
+		"country": "VE"
+	},
+	{
+		"id": 1562822,
+		"name": "Socialist Republic of Vietnam",
+		"country": "VN"
+	},
+	{
+		"id": 3577718,
+		"name": "British Virgin Islands",
+		"country": "VG"
+	},
+	{
+		"id": 4796775,
+		"name": "Virgin Islands of the United States",
+		"country": "VI"
+	},
+	{
+		"id": 4034749,
+		"name": "Wallis et Futuna",
+		"country": "WF"
+	}
+]
