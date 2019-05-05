@@ -1,0 +1,23 @@
+{
+  "city-weather.header": "Current weather and forecast",
+  "common.max": "Max",
+  "common.min": "Min",
+  "common.missing-data": "There is no available data.",
+  "common.precipitation": "Precipitation",
+  "common.pressure": "Pressure",
+  "common.rain": "Rain",
+  "common.temperature": "Temperature",
+  "common.temperature-from": "Temperature from",
+  "common.to": "to",
+  "common.wind": "Wind",
+  "geo.coords": "Geo coords",
+  "preferences.favourites": "Favourites",
+  "preferences.settings": "Settings",
+  "search.placeholder": "Search city...",
+  "weather.cloudiness": "Cloudiness",
+  "weather.humidity": "Humidity",
+  "weather.pressure": "Pressure",
+  "weather.rain": "Rain",
+  "weather.snow": "Snow",
+  "weather.wind": "Wind"
+}

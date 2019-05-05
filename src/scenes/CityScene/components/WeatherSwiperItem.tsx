@@ -2,7 +2,7 @@ import * as React from 'react';
 import apiConfig from '../../../api/apiConfig';
 import './WeatherSwiperItem.css'
 import { IWeatherShortInfo } from '../../../models/IWeatherShortInfo';
-import { FormattedDate } from 'react-intl';
+import { FormattedDate, FormattedMessage } from 'react-intl';
 import { Label } from 'semantic-ui-react';
 import WeatherIcon from '../../../components/WeatherIcon';
 
@@ -18,8 +18,8 @@ export const WeatherSwiperItem = (props: IWeatherSwiperItemProps) => {
 		<div><FormattedDate value={new Date(date * 1000)} weekday="long" /></div>
 		<div><FormattedDate value={new Date(date * 1000)} day='2-digit' month='long' /></div>
 		<br />
-		<Label color='blue' size='large'>Min: {temp_min}°С</Label>
-		<Label color='red' size='large'>Max: {temp_max}°С</Label>
+		<Label color='blue' size='large'><FormattedMessage defaultMessage="Min" id="common.min" />: {temp_min}°С</Label>
+		<Label color='red' size='large'><FormattedMessage defaultMessage="Max" id="common.max" />: {temp_max}°С</Label>
 		<div>Avarage temperature: <b>{temp}</b>°С</div>
 		<div>{description}</div>
 		<br />
