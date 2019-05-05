@@ -1,22 +1,23 @@
 import * as React from 'react';
-import { ICurrentWeather } from '../../../models/ICurrentWeather';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import WeatherIcon from '../../../components/WeatherIcon';
-import { HeartButtonIcon } from '../../../components/HeartButtonIcon';
+import { ICurrentWeather } from '../models/ICurrentWeather';
+import WeatherIcon from './WeatherIcon';
+import './ListWeatherItem.css'
 
-interface IFavouritesItemProps {
+interface IListWeatherItemProps {
 	currentWeather: ICurrentWeather,
-	onHeartClick: (cityId: number) => void
+	iconButton: React.ReactNode,
 }
 
-export const FavouritesItem = (props: IFavouritesItemProps) => {
+export const ListWeatherItem = (props: IListWeatherItemProps) => {
 	const { weather, main, wind, clouds, coord, id, sys, name } = props.currentWeather;
 	const icon = weather && weather.length && weather[0].icon;
 
-	return <div className="row search-result-item">
-		< div className="col-sm-2" >
+	const iconColStyle = { display: 'flex', justifyContent: 'center', height: '90px', alignItems: 'center' };
+	return <div className="row list-weather-item">
+		<div className="col-sm-2" >
 			<div className="row">
 				{icon && <div className="col-xs-12" style={{ display: 'flex', justifyContent: 'center' }}><span><WeatherIcon icon={icon} /></span></div>}
 				<div className="col-xs-12" style={{ display: 'flex', justifyContent: 'center' }}><span><b>{weather[0].main}</b></span></div>
@@ -50,7 +51,7 @@ export const FavouritesItem = (props: IFavouritesItemProps) => {
 			<div className="row">
 				<div className="col-xs-12">
 					<span><FormattedMessage id='weather.wind' defaultMessage='Wind' />: </span>
-					<span><b>{wind.speed} m/s.</b>, </span>
+					<span><b>{wind.speed} m/s</b>, </span>
 				</div>
 				<div className="col-xs-12">
 					<span><FormattedMessage id='weather.cloudiness' defaultMessage='Cloudiness' />: </span>
@@ -66,8 +67,8 @@ export const FavouritesItem = (props: IFavouritesItemProps) => {
 				</div>
 			</div>
 		</div>
-		<div className="col-sm-1" style={{ display: 'flex', justifyContent: 'center', height: '90px', alignItems: 'center' }}>
-			<HeartButtonIcon onRemove={() => props.onHeartClick(id)} cityId={id} />
+		<div className="col-sm-1" style={iconColStyle}>
+			{props.iconButton}
 		</div>
-	</div >;
+	</div>;
 }

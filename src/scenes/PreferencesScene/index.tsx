@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PreferencesNavBar from './components/PreferencesNavBar';
-import { FavouritesContainer } from './components/FavouritesContainer';
+import { FavouritesSection } from './components/FavouritesSection';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
-import { getFavourites } from '../../common/favourites';
+import { getFavourites, removeFromFavourites } from '../../common/favourites';
 import weatherApi from '../../api/WeatherApi';
 
 interface IPreferencesSceneState {
@@ -21,7 +21,7 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 			activeTab: "Favourites",
 			pageItems: [],
 			activePage: 1,
-			totalPages: 0
+			totalPages: 0,
 		}
 	}
 
@@ -48,46 +48,36 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 		});
 	}
 
-	onHeartClick = (cityId: number) => {
-		let { pageItems, totalPages, activePage } = this.state;
+	removeCityFromFavouritesList = (cityId: number) => {
+		removeFromFavourites(cityId);
+		let { activePage } = this.state;
 		const favourites: number[] = getFavourites();
 		const favouritesCount = favourites.length;
+		const totalPages = Math.ceil(favourites.length / 4);
+
+		if (activePage > totalPages) {
+			activePage--;
+		}
+
+		if(activePage === 0) {
+			this.setState({pageItems: [], totalPages: 0, activePage})
+		}
+
 		let skip = (activePage - 1) * this.itemsPerPage;
 		let take = Math.min(this.itemsPerPage, favouritesCount - skip);
 
-		if(favouritesCount === 0) {
-			this.setState({pageItems: [], totalPages: 0, activePage: 1});
-			return;
+		let pageItems: ICurrentWeather[] = [];
+		let promises: Promise<void | ICurrentWeather>[] = [];
+
+		for (let i = skip; i < skip + take; i++) {
+			promises.push(weatherApi.getCurrentWeatherById(favourites[i]).then(cityWeather => {
+				pageItems.push(cityWeather);
+			}));
 		}
 
-		const cityIndex = pageItems.findIndex(i => i.id === cityId);
-		if (cityIndex >= 0) {
-			if (activePage === totalPages && take === 0) {
-				pageItems = [];
-				let promises: Promise<void | ICurrentWeather>[] = [];
-				skip -= this.itemsPerPage;
-				take = this.itemsPerPage;
-				for (let i = skip; i < skip + take; i++) {
-					promises.push(weatherApi.getCurrentWeatherById(favourites[i]).then(cityWeather => {
-						pageItems.push(cityWeather);
-					}));
-				}
-
-				Promise.all(promises).then(() => {
-					this.setState({ pageItems, activePage: activePage - 1, totalPages: totalPages - 1 })
-				});
-			} else if (activePage === totalPages && take > 0) {
-				pageItems.splice(cityIndex, 1);
-				this.setState({ pageItems });
-			} else if (activePage !== totalPages) {
-				pageItems.splice(cityIndex, 1);
-				weatherApi.getCurrentWeatherById(favourites[skip + take - 1])
-					.then(w => {
-						pageItems.push(w);
-						this.setState({ pageItems });
-					});
-			}
-		}
+		Promise.all(promises).then(() => {
+			this.setState({ pageItems, totalPages, activePage });
+		});
 	}
 
 	onNavBarItemClick = (activeItem: string) => {
@@ -99,32 +89,36 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 		const skip = (activePage - 1) * this.itemsPerPage;
 		const take = Math.min(this.itemsPerPage, favourites.length - skip);
 
-		let favouritesWeather: ICurrentWeather[] = [];
+		let pageItems: ICurrentWeather[] = [];
 		let promises: Promise<void | ICurrentWeather>[] = [];
 
 		for (let i = skip; i < skip + take; i++) {
 			promises.push(weatherApi.getCurrentWeatherById(favourites[i]).then(cityWeather => {
-				favouritesWeather.push(cityWeather);
+				pageItems.push(cityWeather);
 			}));
 		}
 
 		Promise.all(promises).then(() => {
-			this.setState({ pageItems: favouritesWeather, activePage });
+			this.setState({ pageItems, activePage });
 		});
 	}
 
+	deleteFromFavourites = (cityId: number) => {
+		this.removeCityFromFavouritesList(cityId);
+	}
+
 	render() {
-		const { activeTab, activePage, pageItems: favouritesWeather, totalPages } = this.state;
+		const { activeTab, activePage, pageItems, totalPages } = this.state;
 
 		return <div className="container body">
 			<PreferencesNavBar activeItem={activeTab} handleItemClick={(e: any, data: { name: string }) => this.onNavBarItemClick(data.name)} />
-			{activeTab === 'Favourites' && <FavouritesContainer
-				favouritesWeather={favouritesWeather}
+			{activeTab === 'Favourites' && <FavouritesSection
+				favouritesWeather={pageItems}
 				activePage={activePage}
 				onPageChange={this.onPageChange}
-				onHeartClick={this.onHeartClick}
-				totalPages={totalPages} />}
+				totalPages={totalPages}
+				deleteFromFavourites={this.deleteFromFavourites} />}
 			{activeTab === 'Settigns' && <div></div>}
 		</div>
 	}
-} 
+}

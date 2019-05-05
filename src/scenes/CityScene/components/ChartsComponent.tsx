@@ -10,7 +10,7 @@ import { ITempDataItem } from '../../../models/ITempDataItem';
 import { IPressureDataItem } from '../../../models/IPressureDataItem';
 import { IPrecipitationDataItem } from '../../../models/IPrecipitationDataItem';
 import { IWindDataItem } from '../../../models/IWindDataItem';
-import { checkIfInFavourites, addToFavourites } from '../../../common/favourites';
+import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../../common/favourites';
 
 interface IChartsComponentProps {
 	currentWeather: ICurrentWeather,
@@ -35,7 +35,7 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 			tempChartData: [],
 			pressureChartData: [],
 			precipitationChartData: [],
-			windChartData: [],
+			windChartData: []
 		}
 	}
 
@@ -86,15 +86,15 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 		this.setState({ tempChartData, pressureChartData, windChartData, precipitationChartData })
 	}
 
-	handleChartsNavBarClick = (e: any, data: { name: string }) => {
-		this.setState({ activeChart: data.name });
+	handleChartsNavBarClick = (activeChart: string) => {
+		this.setState({ activeChart });
 	}
 
 	render = () => {
 		const { activeChart, tempChartData, windChartData, pressureChartData, precipitationChartData } = this.state;
 
 		return <React.Fragment>
-			<ChartsNavBar cityId={this.props.currentWeather.id} activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick} ></ChartsNavBar>
+			<ChartsNavBar activeItem={activeChart} handleItemClick={this.handleChartsNavBarClick} />
 			{activeChart === 'Temperature' && <TempComposedChart data={tempChartData}></TempComposedChart>}
 			{activeChart === 'Wind' && <WindLineChart data={windChartData}></WindLineChart>}
 			{activeChart === 'Pressure' && <PressureComposedChart data={pressureChartData}></PressureComposedChart>}

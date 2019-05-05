@@ -10,11 +10,14 @@ import { WeatherSwiper } from './components/WeatherSwiper';
 import { IWeatherShortInfo } from '../../models/IWeatherShortInfo';
 import { IFiveDaysThreeHoursWeather } from '../../models/IFIveDaysThreeHoursWeather';
 import ChartsComponent from './components/ChartsComponent';
+import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../common/favourites';
+import { HeartToggleIcon } from '../../components/HeartToggleIcon';
 
 interface ICitySceneState {
 	currentWeather?: ICurrentWeather,
 	fiveDaysThreeHoursWeather?: IFiveDaysThreeHoursWeather,
 	swiperItemsData: IWeatherShortInfo[],
+	isInFavourites: boolean
 }
 interface ICitySceneProps extends RouteComponentProps, InjectedIntlProps {
 
@@ -26,6 +29,7 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 
 		this.state = {
 			swiperItemsData: [],
+			isInFavourites: false
 		};
 	}
 
@@ -57,18 +61,28 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 					swiperItemsData.push(dayWeatherShortInfo);
 				}
 
-				this.setState({ swiperItemsData, currentWeather, fiveDaysThreeHoursWeather });
+				this.setState({ swiperItemsData, currentWeather, fiveDaysThreeHoursWeather, isInFavourites: checkIfInFavourites(currentWeather.id) });
 			})
 	}
 
+	onToggleIconClick = (cityId: number) => {
+		const isInFavourites = checkIfInFavourites(cityId);
+		isInFavourites ? removeFromFavourites(cityId) : addToFavourites(cityId);
+		this.setState({ isInFavourites: !isInFavourites });
+	}
+
 	render() {
-		const { currentWeather, swiperItemsData, fiveDaysThreeHoursWeather } = this.state;
+		const { currentWeather, swiperItemsData, fiveDaysThreeHoursWeather, isInFavourites } = this.state;
 		const country = (currentWeather && currentWeather.sys.country || "").toUpperCase();
 		const city = currentWeather && currentWeather.name;
+		const cityId = currentWeather && currentWeather.id;
 
 		return <div className="container body">
 			{city && <Header as="h1">{city && city[0].toUpperCase() + city.substring(1) || ''}, {country}</Header>}
 			{city && <Header as="h3"><FormattedMessage id="city-weather.header" defaultMessage="Current weather and forecast" /></Header>}
+			{cityId && <div style={{ float: 'right' }}>
+				<HeartToggleIcon onClick={() => this.onToggleIconClick(cityId)} active={isInFavourites} />
+			</div>}
 			<div className="row">
 				<div className="col-md-3">
 					{currentWeather && <WeatherSummaryTable currentWeather={currentWeather}></WeatherSummaryTable>}

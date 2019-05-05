@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { CitySearchBar } from './components/CitySearchBar';
-import { SearchResultItem } from './components/SearchResultItem';
 import './index.css'
 import weatherApi from '../../api/WeatherApi';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
-import { Message } from 'semantic-ui-react';
+import { Message, Icon } from 'semantic-ui-react';
+import { ListWeatherItem } from '../../components/ListWeatherItem';
+import { removeFromFavourites, addToFavourites, checkIfInFavourites, getFavourites } from '../../common/favourites';
+import { HeartToggleIcon } from '../../components/HeartToggleIcon';
 
 interface IHomeSceneState {
 	cityWeatherItems: ICurrentWeather[],
+	favourites: number[],
 	cityNotFound: boolean;
 }
 
@@ -21,12 +24,21 @@ class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
 		super(props);
 		this.state = {
 			cityWeatherItems: [],
+			favourites: getFavourites(),
 			cityNotFound: false,
 		}
 	}
 
-	componentDidMount() {
-		
+	componentDidMount = () => {
+		let promises = [];
+		promises.push(weatherApi.getCurrentWeatherByName('Sofia'));
+		promises.push(weatherApi.getCurrentWeatherByName('London'));
+		promises.push(weatherApi.getCurrentWeatherByName('Washington'));
+
+		Promise.all(promises)
+			.then(weatherItems => {
+				this.setState({ cityWeatherItems: weatherItems });
+			});
 	}
 
 	onSearchValueChange: any = (city: string, code: string) => {
@@ -39,6 +51,11 @@ class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
 			});
 	}
 
+	onToggleIconClick = (cityId: number) => {
+		checkIfInFavourites(cityId) ? removeFromFavourites(cityId) : addToFavourites(cityId);
+		this.setState({ favourites: getFavourites() });
+	}
+
 	render() {
 		const { cityNotFound, cityWeatherItems } = this.state;
 		return <React.Fragment>
@@ -47,7 +64,13 @@ class HomeScene extends React.Component<IHomeSceneProps, IHomeSceneState> {
 			</div>
 			<div className="search-result-container">
 				{cityNotFound && <Message color='teal'>No <b>WeatherInfo</b> for selected city :(</Message>}
-				{cityWeatherItems.map(i => <SearchResultItem key={i.id} currentWeather={i}></SearchResultItem>)}
+				{cityWeatherItems.map(i =>
+					<ListWeatherItem
+						iconButton={<HeartToggleIcon
+							onClick={() => this.onToggleIconClick(i.id)}
+							active={checkIfInFavourites(i.id)} />}
+						key={i.id}
+						currentWeather={i} />)}
 			</div>
 		</React.Fragment>
 	}

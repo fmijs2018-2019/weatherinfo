@@ -39,7 +39,7 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 					<Table.Body>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.wind' defaultMessage='Wind' /></Table.Cell>
-							<Table.Cell>{wind.speed} m/s, {getWindDirection(wind.deg)} ({wind.deg})</Table.Cell>
+							<Table.Cell>{wind.speed} m/s{wind.deg && <span>, {getWindDirection(wind.deg)} ({wind.deg})</span>}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.cloudiness' defaultMessage='Cloudiness' /></Table.Cell>
