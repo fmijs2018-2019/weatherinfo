@@ -19,7 +19,7 @@ interface ICitySceneState {
 	swiperItemsData: IWeatherShortInfo[],
 	isInFavourites: boolean
 }
-interface ICitySceneProps extends RouteComponentProps, InjectedIntlProps {
+interface ICitySceneProps extends RouteComponentProps {
 
 }
 
@@ -79,7 +79,7 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 
 		return <div className="container body">
 			{city && <Header as="h1">{city && city[0].toUpperCase() + city.substring(1) || ''}, {country}</Header>}
-			{city && <Header as="h3"><FormattedMessage id="city-weather.header" defaultMessage="Current weather and forecast" /></Header>}
+			{city && <Header as="h3"><FormattedMessage id="city.weather_and_forcast" defaultMessage="Current weather and forecast" /></Header>}
 			{cityId && <div style={{ float: 'right' }}>
 				<HeartToggleIcon onClick={() => this.onToggleIconClick(cityId)} active={isInFavourites} />
 			</div>}
@@ -100,4 +100,4 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 	}
 }
 
-export default injectIntl(CityScene);
+export default CityScene;

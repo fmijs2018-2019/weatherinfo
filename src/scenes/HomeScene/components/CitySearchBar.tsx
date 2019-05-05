@@ -1,11 +1,19 @@
 import * as React from 'react';
-import { Segment, Input, Divider, Button, Dropdown } from 'semantic-ui-react';
+import { Segment, Divider, Button, Dropdown, Icon } from 'semantic-ui-react';
 import _ from "lodash";
 import GoogleApi from '../../../api/GoogleApi';
 import { Prediction } from '../../../models/IPlacesAutocompleteResponse';
 import { CountryHelperMethods } from '../../../common/common';
+import { defineMessages, injectIntl, InjectedIntlProps, FormattedDate, FormattedMessage } from 'react-intl';
 
-interface ICitySearchBarProps {
+const citySearchBarMessages = defineMessages({
+	searchPlaceholder: {
+		id: 'search.placeholder',
+		defaultMessage: 'Search city...'
+	}
+})
+
+interface ICitySearchBarProps extends InjectedIntlProps {
 	onSelect: (city: string, code: string) => void
 	onGetLocation?: (position: Position) => void;
 }
@@ -15,15 +23,15 @@ interface ICitySearchBarState {
 	placesList: any[];
 }
 
-export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySearchBarState> {
+class CitySearchBarInternal extends React.Component<ICitySearchBarProps, ICitySearchBarState> {
 	constructor(props: any) {
 		super(props);
 		this.state = { loading: false, placesList: [] };
 	}
 
-	
+
 	autocompletePlaces = (input: string) => {
-			const callback: any = (predictions: Prediction[]) => {
+		const callback: any = (predictions: Prediction[]) => {
 			const placesList = (predictions || [])
 				.filter(v => v.structured_formatting && v.structured_formatting.secondary_text)
 				.map(v => {
@@ -33,8 +41,8 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 					const code = codeUpper.toLowerCase();
 					return {
 						flag: code,
-						key: v.id, 
-						text: v.description, 
+						key: v.id,
+						text: v.description,
 						value: v.structured_formatting.main_text + ";" + code + ";" + v.id,
 					};
 				});
@@ -54,11 +62,11 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 
 	getLocationCallback = (position: Position) => {
 		const { onGetLocation } = this.props;
-		if(onGetLocation) {
+		if (onGetLocation) {
 			onGetLocation(position);
 		}
 	}
-	
+
 	autocompletePlacesDebounced = _.debounce(this.autocompletePlaces, 250);
 
 	onSearchChange = (event: any, _data: any) => {
@@ -78,6 +86,7 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 
 	render() {
 		const { placesList, loading } = this.state;
+		const { intl } = this.props;
 
 		return <Segment size='large' basic textAlign='center'>
 			<Dropdown
@@ -86,7 +95,7 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 				selectOnNavigation={false}
 				loading={loading}
 				direction="right"
-				placeholder='Search city...'
+				placeholder={intl.formatMessage(citySearchBarMessages.searchPlaceholder)}
 				size="large"
 				onSearchChange={this.onSearchChange}
 				fluid
@@ -95,14 +104,18 @@ export class CitySearchBar extends React.Component<ICitySearchBarProps, ICitySea
 				options={placesList}
 				onChange={this.onChange}
 			/>
-			<Divider horizontal>Or</Divider>
+			<Divider horizontal>
+				<FormattedMessage id="common.or" defaultMessage="Or" />
+			</Divider>
 			<Button
 				color='teal'
 				size='large'
-				content='Your location'
-				icon='map marker alternate'
-				labelPosition='left'
-				onClick={this.getLocation} />
+				onClick={this.getLocation} >
+				<Icon name='map marker alternate' />
+				<FormattedMessage id="search.your_location" defaultMessage="Your location"/>
+			</Button>
 		</Segment>;
 	}
 }
+
+export const CitySearchBar = injectIntl(CitySearchBarInternal);

@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import { ICurrentWeather } from '../models/ICurrentWeather';
 import WeatherIcon from './WeatherIcon';
 import './ListWeatherItem.css'
+import { Flag } from 'semantic-ui-react';
+import FormattedTemperature from './FormattedTemperature';
 
 interface IListWeatherItemProps {
 	currentWeather: ICurrentWeather,
@@ -27,7 +29,7 @@ export const ListWeatherItem = (props: IListWeatherItemProps) => {
 			<div className="row">
 				<div className="col-xs-12">
 					<span><Link to={`/cities/${id}`}>{name}, {sys.country} </Link></span>
-					<span><i className={classNames(sys.country.toLocaleLowerCase(), 'flag')}></i></span>
+					<span>{sys.country && <Flag name={sys.country.toLocaleLowerCase() as any} />}</span>
 				</div>
 			</div>
 			<div className="row">
@@ -35,11 +37,11 @@ export const ListWeatherItem = (props: IListWeatherItemProps) => {
 					<span style={{ fontWeight: 'bold' }}>{weather[0].description}</span>
 				</div>
 				<div className="col-xs-12">
-					<span><div className="ui horizontal label">{main.temp}°С</div></span>
-					<span><FormattedMessage id='common.temperature-from' defaultMessage='Temperature from' /> </span>
-					<span><b>{main.temp_min}°С</b> </span>
-					<span><FormattedMessage id='common.to' defaultMessage='to' /> </span>
-					<span><b>{main.temp_max}°С</b></span>
+					<span><div className="ui horizontal label"><FormattedTemperature temp={main.temp}/></div></span>
+					<span><FormattedMessage id='common.temperature_from' defaultMessage='Temperature from' /> </span>
+					<span><b><FormattedTemperature temp={main.temp_min}/></b></span>
+					<span><FormattedMessage id='common.to' defaultMessage='to' /></span>
+					<span><b><FormattedTemperature temp={main.temp_max}/></b></span>
 				</div>
 				<div className="col-xs-12">
 					<span><FormattedMessage id='geo.coords' defaultMessage='Geo coords' /></span>
@@ -72,3 +74,5 @@ export const ListWeatherItem = (props: IListWeatherItemProps) => {
 		</div>
 	</div>;
 }
+
+
