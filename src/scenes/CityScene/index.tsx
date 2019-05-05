@@ -10,7 +10,7 @@ import { WeatherSwiper } from './components/WeatherSwiper';
 import { IWeatherShortInfo } from '../../models/IWeatherShortInfo';
 import { IFiveDaysThreeHoursWeather } from '../../models/IFIveDaysThreeHoursWeather';
 import ChartsComponent from './components/ChartsComponent';
-import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../common/favourites';
+import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../common/localStorageService';
 import { HeartToggleIcon } from '../../components/HeartToggleIcon';
 
 interface ICitySceneState {

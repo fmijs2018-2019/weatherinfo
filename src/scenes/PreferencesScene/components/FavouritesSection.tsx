@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ICurrentWeather } from '../../../models/ICurrentWeather';
-import { Pagination, Icon, Button } from 'semantic-ui-react';
+import { Pagination, Icon, Button, Segment } from 'semantic-ui-react';
 import { ListWeatherItem } from '../../../components/ListWeatherItem';
 import { DeleteFromFavouritesModal } from '../../../components/DeleteFromFavouritesModal';
 
@@ -42,28 +42,32 @@ export class FavouritesSection extends React.Component<IFavouritesSectionProps, 
 		const { favouritesWeather, onPageChange, totalPages, activePage } = this.props;
 		const { showModal } = this.state;
 
-		return <React.Fragment >
-			{favouritesWeather.map(i => <ListWeatherItem
-				iconButton={<Button onClick={this.onTrashButtonClick(i.id)} icon style={{ padding: 0, backgroundColor: 'transparent' }} >
-					<Icon name="trash" color="grey" size="large" />
-				</Button>}
-				currentWeather={i}
-				key={i.id} />)}
-
+		return <Segment>
+			<div className="row">
+				<div className="col-xs-12">
+					{favouritesWeather.map(i => <ListWeatherItem
+						iconButton={<Button onClick={this.onTrashButtonClick(i.id)} icon style={{ padding: 0, backgroundColor: 'transparent' }} >
+							<Icon name="trash" color="grey" size="large" />
+						</Button>}
+						currentWeather={i}
+						key={i.id} />)}
+				</div>
+				<div className="col-xs-12">
+					{favouritesWeather.length > 0 && <Pagination
+						style={{ float: 'right', marginTop: '10px' }}
+						prevItem={{ disabled: activePage === 1, content: '⟨' }}
+						nextItem={{ disabled: activePage === totalPages, content: '⟩' }}
+						totalPages={totalPages}
+						onPageChange={(e: any, d: any) => onPageChange(d.activePage)}
+						defaultActivePage={1}
+						firstItem={null}
+						lastItem={null} /> || <div>There is no cities in Favourites.</div>}
+				</div>
+			</div>
 			<DeleteFromFavouritesModal
 				showModal={showModal}
 				onClose={this.onModalClose}
 				onConfirm={this.onModalConfirm} />
-
-			{favouritesWeather.length > 0 && <Pagination
-				style={{ float: 'right', marginTop: '10px' }}
-				prevItem={{ disabled: activePage === 1, content: '⟨' }}
-				nextItem={{ disabled: activePage === totalPages, content: '⟩' }}
-				totalPages={totalPages}
-				onPageChange={(e: any, d: any) => onPageChange(d.activePage)}
-				defaultActivePage={1}
-				firstItem={null}
-				lastItem={null} /> || <div>There is no cities in Favourites.</div>}
-		</React.Fragment >
+		</Segment >
 	}
 }
