@@ -25,7 +25,7 @@ export const WeatherSwiperItem = (props: IWeatherSwiperItemProps) => {
 		<div>{description}</div>
 		<br />
 		<div><FormattedMessage id="weather.wind" defaultMessage="Wind"/>: <b>{windSpeed}</b><FormattedMessage id="weather.wind_mps" defaultMessage="m/s"/></div>
-		<div><FormattedMessage id="weather.clounds" defaultMessage="Clouds"/>: <b>{clouds}</b>%</div>
+		<div><FormattedMessage id="weather.cloundiness" defaultMessage="Cloudiness"/>: <b>{clouds}</b>%</div>
 		<div><FormattedMessage id="weather.pressure" defaultMessage="Pressure"/>: <b>{pressure}</b><FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa"/></div>
 		<div><FormattedMessage id="weather.humidity" defaultMessage="Humidity"/>: <b>{humidity}</b>%</div>
 	</div>
