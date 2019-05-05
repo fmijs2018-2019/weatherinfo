@@ -8,15 +8,25 @@ import CityScene from './scenes/CityScene';
 import MapScene from './scenes/MapScene';
 import { PreferencesScene } from './scenes/PreferencesScene';
 
-class App extends Component {
+interface IAppProps {
+	onLocaleChange: (locale: string) => void;
+}
+
+class App extends Component<IAppProps> {
+	constructor(props: Readonly<IAppProps>) {
+		super(props);
+		
+	}
+	
 	render() {
+		const { onLocaleChange } = this.props;
 		return <Layout>
 			<Switch>
 				<Route exact path="/home" component={HomeScene} />
 				<Route path='/about' component={AboutScene} />
 				<Route path='/cities/:city' component={CityScene} />
 				<Route path='/map' component={MapScene} />
-				<Route path='/preferences' component={PreferencesScene} />
+				<Route path='/preferences' component={() => <PreferencesScene onLocaleChange={onLocaleChange}/>} />
 				<Redirect to="/home" />
 			</Switch>
 		</Layout>;

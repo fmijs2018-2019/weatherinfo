@@ -13,9 +13,13 @@ interface IPreferencesSceneState {
 	totalPages: number
 }
 
-export class PreferencesScene extends React.Component<any, IPreferencesSceneState> {
+interface IPreferencesSceneProps {
+	onLocaleChange: (locale: string) => void;
+}
 
-	constructor(props: any) {
+export class PreferencesScene extends React.Component<IPreferencesSceneProps, IPreferencesSceneState> {
+
+	constructor(props: Readonly<IPreferencesSceneProps>) {
 		super(props);
 
 		this.state = {
@@ -110,6 +114,7 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 
 	render() {
 		const { activeTab, activePage, pageItems, totalPages } = this.state;
+		const { onLocaleChange } = this.props;
 
 		return <div className="container body">
 			<PreferencesNavBar activeItem={activeTab} handleItemClick={(e: any, data: { name: string }) => this.onNavBarItemClick(data.name)} />
@@ -119,7 +124,7 @@ export class PreferencesScene extends React.Component<any, IPreferencesSceneStat
 				onPageChange={this.onPageChange}
 				totalPages={totalPages}
 				deleteFromFavourites={this.deleteFromFavourites} />}
-			{activeTab === 'Settings' && <SettingsSection />}
+			{activeTab === 'Settings' && <SettingsSection onLocaleChange={onLocaleChange}/>}
 		</div>
 	}
 }

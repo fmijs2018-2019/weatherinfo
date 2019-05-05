@@ -14,23 +14,46 @@ import locale_en from 'react-intl/locale-data/en';
 import locale_bg from 'react-intl/locale-data/bg';
 import messages_bg from "./translations/bg.json";
 import messages_en from "./translations/en.json";
+import { getSettingsOrDefault } from './common/localStorageService';
 
 const messages: any = {
-    'bg': messages_bg,
-    'en': messages_en
+	'bg': messages_bg,
+	'en': messages_en
 };
 
-export const language = 'bg';
+export const language = 'bg'
 
 addLocaleData([...locale_en, ...locale_bg]);
 
-ReactDOM.render(
-	<IntlProvider locale={language} messages={messages[language]}>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</IntlProvider>,
-	document.getElementById('root'));
+interface IStatefulIntlProvider {
+	locale: string;
+}
+
+class StatefulIntlProvider extends React.Component<{}, IStatefulIntlProvider> {
+	constructor(props: Readonly<{}>) {
+		super(props);
+		this.state = {
+			locale: getSettingsOrDefault().language
+		}
+	}
+
+	onLocaleChange = (locale: string) => {
+		this.setState({ locale });
+	}
+
+	render() {
+		const { locale } = this.state;
+		return (
+			<IntlProvider locale={locale} messages={messages[locale]}>
+				<BrowserRouter>
+					<App onLocaleChange={this.onLocaleChange}/>
+				</BrowserRouter>
+			</IntlProvider>
+		);
+	}
+}
+
+ReactDOM.render(<StatefulIntlProvider />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
