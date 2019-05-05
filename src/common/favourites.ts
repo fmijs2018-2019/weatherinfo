@@ -6,9 +6,7 @@ export const addToFavourites = (cityId: number) => {
 		favourites = JSON.parse(favouritesStr);
 		const indexOfCity = favourites.indexOf(cityId);
 
-		if(indexOfCity >= 0) {
-			favourites.splice(indexOfCity, 1);
-		} else {
+		if (indexOfCity < 0) {
 			favourites.push(cityId);
 		}
 	} else {
@@ -16,6 +14,21 @@ export const addToFavourites = (cityId: number) => {
 	}
 
 	localStorage.setItem('favourites', JSON.stringify(favourites));
+}
+
+export const removeFromFavourites = (cityId: number) => {
+	let favouritesStr = localStorage.getItem('favourites');
+	let favourites: number[];
+
+	if (favouritesStr) {
+		favourites = JSON.parse(favouritesStr);
+		const indexOfCity = favourites.indexOf(cityId);
+
+		if (indexOfCity >= 0) {
+			favourites.splice(indexOfCity, 1);
+			localStorage.setItem('favourites', JSON.stringify(favourites));
+		}
+	}
 }
 
 export const checkIfInFavourites = (cityId: number) => {
@@ -26,7 +39,7 @@ export const checkIfInFavourites = (cityId: number) => {
 		favourites = JSON.parse(favouritesStr);
 		return favourites.indexOf(cityId) >= 0;
 	}
-	
+
 	return false;
 }
 
