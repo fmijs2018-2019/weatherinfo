@@ -6,7 +6,7 @@ import { ISettings } from '../../../models/ISettings';
 import { ResetSettingsModal } from '../../../components/ResetSettingsModal';
 
 interface ISettingsSectionProps {
-
+	onLocaleChange: (locale: string) => void;
 }
 
 interface ISettingsSectionState {
@@ -56,8 +56,10 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 
 	onApply = () => {
 		const { language, tempMetric, hoursFormat } = this.state;
+		const { onLocaleChange } = this.props;
 		const settings: ISettings = { language, tempMetric, hoursFormat }
 		setSettings(settings);
+		onLocaleChange(language);
 	}
 
 	render() {
