@@ -14,7 +14,8 @@ interface ISettingsSectionState {
 	language: string,
 	tempMetric: string,
 	hoursFormat: string,
-	showModal: boolean
+	showModal: boolean,
+	isApplyDisabled: boolean
 }
 
 export class SettingsSection extends React.Component<ISettingsSectionProps, ISettingsSectionState> {
@@ -25,19 +26,42 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 		const settings: ISettings = getSettingsOrDefault();
 		const { language, tempMetric, hoursFormat } = settings;
 
-		this.state = { language, tempMetric, hoursFormat, showModal: false };
+		this.state = { language, tempMetric, hoursFormat, showModal: false, isApplyDisabled: true };
+
 	}
 
 	handleLanguageChange = (value: string) => {
-		this.setState({ language: value });
+		const settings: ISettings = getSettingsOrDefault();
+		const { hoursFormat, tempMetric } = this.state;
+
+		const isApplyDisabled = settings.language === value
+			&& settings.hoursFormat === hoursFormat
+			&& settings.tempMetric === tempMetric;
+
+		this.setState({ language: value, isApplyDisabled });
 	}
 
 	handleTempMetricChange = (value: string) => {
-		this.setState({ tempMetric: value });
+
+		const settings: ISettings = getSettingsOrDefault();
+		const { language, hoursFormat } = this.state;
+
+		const isApplyDisabled = settings.language === language
+			&& settings.hoursFormat === hoursFormat
+			&& settings.tempMetric === value;
+			
+		this.setState({ tempMetric: value, isApplyDisabled });
 	}
 
 	handleHoursFormatChange = (value: string) => {
-		this.setState({ hoursFormat: value });
+		const settings: ISettings = getSettingsOrDefault();
+		const { language, tempMetric } = this.state;
+
+		const isApplyDisabled = settings.language === language
+			&& settings.hoursFormat === value
+			&& settings.tempMetric === tempMetric;
+
+		this.setState({ hoursFormat: value, isApplyDisabled });
 	}
 
 	onReset = () => {
@@ -64,7 +88,7 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 	}
 
 	render() {
-		const { language, tempMetric, hoursFormat, showModal } = this.state;
+		const { language, tempMetric, hoursFormat, showModal, isApplyDisabled } = this.state;
 
 		return <Segment>
 			<div className="settings-list-item row">
@@ -110,7 +134,7 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 					<Button floated="right" color="teal" basic onClick={this.onReset}>
 						<FormattedMessage id="common.reset" defaultMessage="Reset" />
 					</Button>
-					<Button floated="right" color="teal" onClick={this.onApply}>
+					<Button disabled={isApplyDisabled} floated="right" color="teal" onClick={this.onApply}>
 						<FormattedMessage id="common.apply" defaultMessage="Apply" />
 					</Button>
 				</div>
