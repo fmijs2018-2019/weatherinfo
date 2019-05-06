@@ -64,7 +64,7 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 				name,
 				min: i.main.temp_min,
 				max: i.main.temp_max,
-				avarage: i.main.temp,
+				average: i.main.temp,
 				icon: i.weather[0].icon
 			});
 			windChartData.push({ name, speed: i.wind.speed, deg: i.wind.deg });

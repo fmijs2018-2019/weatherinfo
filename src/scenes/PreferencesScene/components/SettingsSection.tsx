@@ -4,6 +4,7 @@ import './SettingsSection.css'
 import { setSettings, resetSettings, getSettingsOrDefault } from '../../../common/localStorageService';
 import { ISettings } from '../../../models/ISettings';
 import { ResetSettingsModal } from '../../../components/ResetSettingsModal';
+import { FormattedMessage } from 'react-intl';
 
 interface ISettingsSectionProps {
 	onLocaleChange: (locale: string) => void;
@@ -67,7 +68,9 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 
 		return <Segment>
 			<div className="settings-list-item row">
-				<div className="col-md-2">Language</div>
+				<div className="col-md-2">
+					<FormattedMessage id="common.language" defaultMessage="Language" />
+				</div>
 				<div className="col-md-10">
 					<Button.Group>
 						<Button active={false} value="bg" color={language === 'bg' ? 'teal' : undefined} onClick={(event: any, data: any) => this.handleLanguageChange(data.value)}>BG</Button>
@@ -77,7 +80,9 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 				</div>
 			</div>
 			<div className="settings-list-item row">
-				<div className="col-md-2">Temperature metric</div>
+				<div className="col-md-2">
+					<FormattedMessage id="common.temp_metric" defaultMessage="Temperature metric" />
+				</div>
 				<div className="col-md-10">
 					<Button.Group>
 						<Button value="c" color={tempMetric === 'c' ? 'teal' : undefined} onClick={(event: any, data: any) => this.handleTempMetricChange(data.value)}>°C</Button>
@@ -89,7 +94,9 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 				</div>
 			</div>
 			<div className="settings-list-item row">
-				<div className="col-md-2">Hours format</div>
+				<div className="col-md-2">
+					<FormattedMessage id="common.hours_format" defaultMessage="Hours format" />
+				</div>
 				<div className="col-md-10">
 					<Button.Group>
 						<Button value="12" color={hoursFormat === '12' ? 'teal' : undefined} onClick={(event: any, data: any) => this.handleHoursFormatChange(data.value)}>12</Button>
@@ -100,8 +107,12 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 			</div>
 			<div className="row">
 				<div className="col-md-12">
-					<Button floated="right" color="teal" basic onClick={this.onReset}>Reset</Button>
-					<Button floated="right" color="teal" onClick={this.onApply}>Apply</Button>
+					<Button floated="right" color="teal" basic onClick={this.onReset}>
+						<FormattedMessage id="common.reset" defaultMessage="Reset" />
+					</Button>
+					<Button floated="right" color="teal" onClick={this.onApply}>
+						<FormattedMessage id="common.apply" defaultMessage="Apply" />
+					</Button>
 				</div>
 			</div>
 			<ResetSettingsModal showModal={showModal} onClose={this.onModalClose} onConfirm={this.onModalConfirm} />

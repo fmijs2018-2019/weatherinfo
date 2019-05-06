@@ -7,6 +7,7 @@ import WeatherIcon from './WeatherIcon';
 import './ListWeatherItem.css'
 import { Flag } from 'semantic-ui-react';
 import FormattedTemperature from './FormattedTemperature';
+import { FormattedMainWeather } from './FormattedMainWeather';
 
 interface IListWeatherItemProps {
 	currentWeather: ICurrentWeather,
@@ -16,13 +17,14 @@ interface IListWeatherItemProps {
 export const ListWeatherItem = (props: IListWeatherItemProps) => {
 	const { weather, main, wind, clouds, coord, id, sys, name } = props.currentWeather;
 	const icon = weather && weather.length && weather[0].icon;
+	const weatherId = weather[0].id;
 
 	const iconColStyle = { display: 'flex', justifyContent: 'center', height: '90px', alignItems: 'center' };
 	return <div className="row list-weather-item">
 		<div className="col-sm-2" >
 			<div className="row">
 				{icon && <div className="col-xs-12" style={{ display: 'flex', justifyContent: 'center' }}><span><WeatherIcon icon={icon} /></span></div>}
-				<div className="col-xs-12" style={{ display: 'flex', justifyContent: 'center' }}><span><b>{weather[0].main}</b></span></div>
+				<div className="col-xs-12" style={{ display: 'flex', justifyContent: 'center' }}><span><b><FormattedMainWeather weatherId={weatherId}/></b></span></div>
 			</div>
 		</div >
 		<div className="col-sm-6">
@@ -53,19 +55,19 @@ export const ListWeatherItem = (props: IListWeatherItemProps) => {
 			<div className="row">
 				<div className="col-xs-12">
 					<span><FormattedMessage id='weather.wind' defaultMessage='Wind' />: </span>
-					<span><b>{wind.speed} m/s</b>, </span>
+					<span><b>{wind.speed}</b> <FormattedMessage id="weather.wind_mps" defaultMessage="m/s"/></span>
 				</div>
 				<div className="col-xs-12">
 					<span><FormattedMessage id='weather.cloudiness' defaultMessage='Cloudiness' />: </span>
-					<span><b>{clouds.all}%</b>, </span>
+					<span><b>{clouds.all}</b> %</span>
 				</div>
 				<div className="col-xs-12">
 					<span><FormattedMessage id='weather.humidity' defaultMessage='Humidity' />: </span>
-					<span><b>{main.humidity}%</b> </span>
+					<span><b>{main.humidity}</b> %</span>
 				</div>
 				<div className="col-xs-12">
 					<span><FormattedMessage id='weather.pressure' defaultMessage='Pressure' />: </span>
-					<span><b>{main.pressure}hpa</b> </span>
+					<span><b>{main.pressure}</b> <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa"/></span>
 				</div>
 			</div>
 		</div>

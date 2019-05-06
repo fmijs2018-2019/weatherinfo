@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import { getWindDirection } from '../../../utils/getWindDirection';
 import apiConfig from '../../../api/apiConfig';
 import WeatherIcon from '../../../components/WeatherIcon';
+import { FormattedMainWeather } from '../../../components/FormattedMainWeather';
+import FormattedTemperature from '../../../components/FormattedTemperature';
 
 interface IWeatherSummaryTableProps {
 	currentWeather: ICurrentWeather
@@ -12,7 +14,8 @@ interface IWeatherSummaryTableProps {
 
 export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 	const { main: mainWeather, rain, snow, weather: shortWeather, coord: { lon, lat }, wind, clouds } = props.currentWeather;
-	const { icon, main: shortDescription, description } = shortWeather[0];
+	const { icon, description } = shortWeather[0];
+	const weatherId = shortWeather[0].id;
 
 	const style: React.CSSProperties = {
 		marginTop: '-15px',
@@ -24,12 +27,12 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 		<div className="row" >
 			<div className="col-xs-12">
 				<WeatherIcon icon={icon} />
-				<span style={{ fontSize: '28px' }}>{mainWeather.temp}°С</span>
+				<span style={{ fontSize: '28px' }}><FormattedTemperature temp={mainWeather.temp} /></span>
 			</div>
 		</div>
 		<div className="row">
 			<div className="col-xs-12" style={style}>
-				<b>{shortDescription}</b>
+				<b><FormattedMainWeather weatherId={weatherId}/></b>
 				<span>{' '}{description}</span>
 			</div>
 		</div>
@@ -39,15 +42,15 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 					<Table.Body>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.wind' defaultMessage='Wind' /></Table.Cell>
-							<Table.Cell>{wind.speed} m/s{wind.deg && <span>, {getWindDirection(wind.deg)} ({wind.deg})</span>}</Table.Cell>
+							<Table.Cell>{wind.speed} <FormattedMessage id="weather.wind_mps" defaultMessage="m/s"/>{wind.deg && <span>, {getWindDirection(wind.deg)} ({wind.deg})</span>}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.cloudiness' defaultMessage='Cloudiness' /></Table.Cell>
-							<Table.Cell>{clouds.all}</Table.Cell>
+							<Table.Cell>{clouds.all} %</Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.pressure' defaultMessage='Pressure' /></Table.Cell>
-							<Table.Cell>{mainWeather.pressure} hpa</Table.Cell>
+							<Table.Cell>{mainWeather.pressure} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa"/></Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.humidity' defaultMessage='Humidity' /></Table.Cell>

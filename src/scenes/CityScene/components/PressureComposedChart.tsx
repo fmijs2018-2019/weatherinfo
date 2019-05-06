@@ -1,6 +1,7 @@
 import { CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ComposedChart, Bar, ResponsiveContainer } from "recharts";
 import * as React from 'react';
 import { IPressureDataItem } from "../../../models/IPressureDataItem";
+import { FormattedMessage } from "react-intl";
 
 interface IPressureComposedChartProps {
 	data: IPressureDataItem[]
@@ -10,10 +11,16 @@ const CustomTooltip = (props: any) => {
 	if (props.active) {
 		const { payload } = props.payload[0];
 		return <div style={{ backgroundColor: 'white', padding: '5px', border: 'rgba(0, 0, 0, 0.5) solid 1px' }}>
-			<div>Time: {payload.name}</div>
-			<div style={{ color: '#268e61' }}>Pressure: {payload.pressure} hpa</div>
-			<div style={{ color: '#f21607' }}>Ground level: {payload.grndLevel} hpa</div>
-			<div style={{ color: '#0857e0' }}>Sea level: {payload.seaLevel} hpa</div>
+			<div><FormattedMessage id="common.time" defaultMessage="Time" />: {payload.name}</div>
+			<div style={{ color: '#268e61' }}>
+				<FormattedMessage id="weather.pressure" defaultMessage="Pressure" />: {payload.pressure} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
+			</div>
+			<div style={{ color: '#f21607' }}>
+				<FormattedMessage id="common.geound_level" defaultMessage="Ground level" />: {payload.grndLevel} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
+			</div>
+			<div style={{ color: '#0857e0' }}>
+			<FormattedMessage id="common.sea_level" defaultMessage="Sea level" />: {payload.seaLevel} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
+			</div>
 		</div>
 	}
 	return null;

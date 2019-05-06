@@ -2,6 +2,7 @@ import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, Responsi
 import * as React from 'react';
 import { IWindDataItem } from "../../../models/IWindDataItem";
 import { getWindDirection } from "../../../utils/getWindDirection";
+import { FormattedMessage } from "react-intl";
 
 interface IWindLineChart {
 	data: IWindDataItem[]
@@ -11,9 +12,13 @@ const CustomTooltip = (props: any) => {
 	if (props.active) {
 		const { payload } = props.payload[0];
 		return <div style={{ backgroundColor: 'white', padding: '5px', border: 'rgba(0, 0, 0, 0.5) solid 1px' }}>
-			<div>Time: {payload.name}</div>
-			<div style={{ color: '#0857e0' }}>Speed: {payload.speed} m/s</div>
-			<div style={{ color: '#f21607' }}>Direction: {getWindDirection(payload.deg)} ({payload.deg})</div>
+			<div><FormattedMessage id="common.time" defaultMessage="Time" />: {payload.name}</div>
+			<div style={{ color: '#0857e0' }}>
+				<FormattedMessage id="weather.wind_speed" defaultMessage="Speed" />: {payload.speed} <FormattedMessage id="weather.wind_mps" defaultMessage="m/s" />
+			</div>
+			<div style={{ color: '#f21607' }}>
+				<FormattedMessage id="weather.wind_direction" defaultMessage="Direction" />: {getWindDirection(payload.deg)} ({payload.deg})
+			</div>
 		</div>
 	}
 	return null;

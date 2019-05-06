@@ -1,6 +1,8 @@
 import { CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, Area, ComposedChart, ResponsiveContainer } from "recharts";
 import * as React from 'react';
 import { ITempDataItem } from "../../../models/ITempDataItem";
+import { FormattedMessage } from "react-intl";
+import FormattedTemperature from "../../../components/FormattedTemperature";
 
 interface ITempLineChartProps {
 	data: ITempDataItem[]
@@ -10,10 +12,18 @@ const CustomTooltipp = (props: any) => {
 	if (props && props.active) {
 		const { payload } = props.payload[0];
 		return <div style={{ backgroundColor: 'white', padding: '5px', border: 'rgba(0, 0, 0, 0.5) solid 1px' }}>
-			<div>Time: {payload.name}</div>
-			<div style={{ color: '#dd9d1f' }}>Avarage: {payload.avarage} °С</div>
-			<div style={{ color: '#0857e0' }}>Min: {payload.min} °С</div>
-			<div style={{ color: '#f21607' }}>Max: {payload.max} °С</div>
+			<div>
+				<FormattedMessage id="common.time" defaultMessage="Time" />: {payload.name}
+			</div>
+			<div style={{ color: '#dd9d1f' }}>
+				<FormattedMessage id="common.average" defaultMessage="Average" />: <FormattedTemperature temp={payload.average} />
+			</div>
+			<div style={{ color: '#0857e0' }}>
+				<FormattedMessage id="common.min" defaultMessage="Min" />: <FormattedTemperature temp={payload.min} />
+			</div>
+			<div style={{ color: '#f21607' }}>
+				<FormattedMessage id="common.max" defaultMessage="Max" />: <FormattedTemperature temp={payload.max} />
+			</div>
 		</div>
 	}
 	return null;
@@ -36,7 +46,7 @@ export const TempComposedChart = (props: ITempLineChartProps) => {
 						<stop offset="95%" stopColor="#ffbc38" stopOpacity={0} />
 					</linearGradient>
 				</defs>
-				<Area type="monotone" name="Avarage" dataKey="avarage" stroke="#ffbc38" fillOpacity={1} fill="url(#colorUv)" unit="°С" />
+				<Area type="monotone" name="Average" dataKey="average" stroke="#ffbc38" fillOpacity={1} fill="url(#colorUv)" unit="°С" />
 
 				<Line type="monotone" name="Max" dataKey="max" stroke="#f21607" unit="°С" />
 				<Line type="monotone" name="Min" dataKey="min" stroke="#0857e0" unit="°С" />

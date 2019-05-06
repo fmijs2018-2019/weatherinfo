@@ -1,7 +1,7 @@
 export interface ITempDataItem {
 	name: string,
 	min: number,
-	avarage: number,
+	average: number,
 	max: number,
 	icon: string,
 }
