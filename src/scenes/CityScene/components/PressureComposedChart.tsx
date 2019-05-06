@@ -16,10 +16,10 @@ const CustomTooltip = (props: any) => {
 				<FormattedMessage id="weather.pressure" defaultMessage="Pressure" />: {payload.pressure} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
 			</div>
 			<div style={{ color: '#f21607' }}>
-				<FormattedMessage id="common.geound_level" defaultMessage="Ground level" />: {payload.grndLevel} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
+				<FormattedMessage id="common.ground_level" defaultMessage="Ground level" />: {payload.grndLevel} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
 			</div>
 			<div style={{ color: '#0857e0' }}>
-			<FormattedMessage id="common.sea_level" defaultMessage="Sea level" />: {payload.seaLevel} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
+				<FormattedMessage id="common.sea_level" defaultMessage="Sea level" />: {payload.seaLevel} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" />
 			</div>
 		</div>
 	}
@@ -35,11 +35,27 @@ export const PressureComposedChart = (props: IPressureComposedChartProps) => {
 				<XAxis dataKey="name" />
 				<YAxis domain={[1000, 1050]} />
 				<Tooltip content={<CustomTooltip />} />
-				<Legend />
-
-				<Bar dataKey="pressure" name="Pressure" fill="rgba(84, 183, 140, 0.5)" unit="hpa" />
-				<Line type="monotone" name="Sea level" dataKey="seaLevel" stroke="#0857e0" unit="hpa" />
-				<Line type="monotone" name="Ground level" dataKey="grndLevel" stroke="#f21607" unit="hpa" />
+				<Legend payload={[{
+					value: <FormattedMessage id="weather.pressure" defaultMessage="Pressure" />,
+					type: 'line',
+					id: 'pressure',
+					color: 'rgba(84, 183, 140, 0.5)'
+				},
+				{
+					value: <FormattedMessage id="common.ground_level" defaultMessage="Ground level" />,
+					type: 'line',
+					id: 'ground_level',
+					color: '#f21607'
+				},
+				{
+					value: <FormattedMessage id="common.sea_level" defaultMessage="Sea level" />,
+					type: 'line',
+					id: 'sea_level',
+					color: '#0857e0'
+				}]} />
+				<Bar dataKey="pressure" fill="rgba(84, 183, 140, 0.5)" unit="hpa" />
+				<Line type="monotone" dataKey="seaLevel" stroke="#0857e0" unit="hpa" />
+				<Line type="monotone" dataKey="grndLevel" stroke="#f21607" unit="hpa" />
 			</ComposedChart>
 		</ResponsiveContainer>
 	</div>

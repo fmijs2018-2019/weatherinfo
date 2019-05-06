@@ -3,6 +3,8 @@ import * as React from 'react';
 import { ITempDataItem } from "../../../models/ITempDataItem";
 import { FormattedMessage } from "react-intl";
 import FormattedTemperature from "../../../components/FormattedTemperature";
+import { getSettingsOrDefault } from "../../../common/localStorageService";
+import { ISettings } from "../../../models/ISettings";
 
 interface ITempLineChartProps {
 	data: ITempDataItem[]
@@ -30,6 +32,8 @@ const CustomTooltipp = (props: any) => {
 }
 
 export const TempComposedChart = (props: ITempLineChartProps) => {
+	const unit = '°' + getSettingsOrDefault().tempMetric.toUpperCase();
+
 	return <div style={{ width: "100%", height: 320 }}>
 		<ResponsiveContainer>
 			<ComposedChart width={850} height={320} data={props.data}
@@ -38,7 +42,24 @@ export const TempComposedChart = (props: ITempLineChartProps) => {
 				<XAxis dataKey="name" />
 				<YAxis />
 				<Tooltip content={<CustomTooltipp />} />
-				<Legend />
+				<Legend payload={[{
+					value: <FormattedMessage id="common.average" defaultMessage="Average" />,
+					type: 'line',
+					id: 'avg',
+					color: '#ffbc38'
+				},
+				{
+					value: <FormattedMessage id="common.min" defaultMessage="Min" />,
+					type: 'line',
+					id: 'min',
+					color: '#f21607'
+				},
+				{
+					value: <FormattedMessage id="common.max" defaultMessage="Max" />,
+					type: 'line',
+					id: 'max',
+					color: '#0857e0'
+				}]} />
 
 				<defs>
 					<linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -48,8 +69,8 @@ export const TempComposedChart = (props: ITempLineChartProps) => {
 				</defs>
 				<Area type="monotone" name="Average" dataKey="average" stroke="#ffbc38" fillOpacity={1} fill="url(#colorUv)" unit="°С" />
 
-				<Line type="monotone" name="Max" dataKey="max" stroke="#f21607" unit="°С" />
-				<Line type="monotone" name="Min" dataKey="min" stroke="#0857e0" unit="°С" />
+				<Line type="monotone" dataKey="max" stroke="#f21607" unit={unit} />
+				<Line type="monotone" dataKey="min" stroke="#0857e0" unit={unit} />
 			</ComposedChart>
 		</ResponsiveContainer>
 	</div>

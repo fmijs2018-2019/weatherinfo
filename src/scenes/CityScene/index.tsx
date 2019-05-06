@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './index.css';
 import { WeatherSummaryTable } from './components/WeatherSummaryTable';
-import { Header, Icon, Button } from 'semantic-ui-react';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import { Header } from 'semantic-ui-react';
+import { FormattedMessage } from 'react-intl';
 import { ICurrentWeather } from '../../models/ICurrentWeather';
 import weatherApi from '../../api/WeatherApi';
 import { RouteComponentProps } from 'react-router';

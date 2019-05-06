@@ -5,6 +5,7 @@ import WorldMap, { ICountry } from "./components/WorldMap";
 import { RouteComponentProps } from "react-router";
 import CountryInfoPanel from "./components/CountryInfoPanel";
 import { CountryHelperMethods, getOpenWeatherMapCitiesByCountryAlpha2, IOWMCity, IOWMCitiesByCountry } from "../../common/common";
+import { FormattedMessage } from "react-intl";
 
 interface IMapSceneState {
 	lat: number;
@@ -71,13 +72,13 @@ class MapScene extends Component<IMapSceneProps, IMapSceneState> {
 		};
 		const { lat, lon, zoom, country, cities, activePage } = this.state;
 		const itemsList = [
-			{ name: "World", lat: 0, lon: 20, zoom: 1 },
-			{ name: "Europe", lat: 15.795367, lon: 48.587675, zoom: 3 },
-			{ name: "Africa", lon: 3.997508, lat: 9.319308, zoom: 2 },
-			{ name: "Asia", lon: 35.139295, lat: 84.202121, zoom: 2 },
-			{ name: "Australia", lon: -18.470799, lat: 135.205220, zoom: 2.5 },
-			{ name: "North America", lon: 42.137710, lat: -100.956889, zoom: 2 },
-			{ name: "South America", lon: -15.783315, lat: -59.911967, zoom: 2 },
+			{ name: <FormattedMessage id="map.world" defaultMessage="World" />, lat: 0, lon: 20, zoom: 1 },
+			{ name: <FormattedMessage id="map.europe" defaultMessage="Europe" />, lat: 15.795367, lon: 48.587675, zoom: 3 },
+			{ name: <FormattedMessage id="map.africa" defaultMessage="Africa" />, lon: 3.997508, lat: 9.319308, zoom: 2 },
+			{ name: <FormattedMessage id="map.asia" defaultMessage="Asia" />, lon: 35.139295, lat: 84.202121, zoom: 2 },
+			{ name: <FormattedMessage id="map.australia" defaultMessage="Australia" />, lon: -18.470799, lat: 135.205220, zoom: 2.5 },
+			{ name: <FormattedMessage id="map.north_america" defaultMessage="North America" />, lon: 42.137710, lat: -100.956889, zoom: 2 },
+			{ name: <FormattedMessage id="map.south_america" defaultMessage="South America" />, lon: -15.783315, lat: -59.911967, zoom: 2 },
 		];
 		let totalPages = cities ? Math.floor((cities.total / this.citiesPerPage) + 1) : 1;
 		return (

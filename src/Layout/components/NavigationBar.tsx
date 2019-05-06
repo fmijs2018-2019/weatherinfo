@@ -26,9 +26,9 @@ class NavigationBar extends React.Component<INavigationBarProps> {
 				<Menu.Item name='map' color='teal' active={activeItem === 'map'} onClick={this.handleItemClick} >
 					<FormattedMessage id="nav.map" defaultMessage="Map"/>
 				</Menu.Item>
-				<Menu.Item name='about' color='teal' active={activeItem === 'about'} onClick={this.handleItemClick}>
+				{/* <Menu.Item name='about' color='teal' active={activeItem === 'about'} onClick={this.handleItemClick}>
 					<FormattedMessage id="nav.about" defaultMessage="About" />
-				</Menu.Item>
+				</Menu.Item> */}
 				<Menu.Item position="right" name='preferences' color='teal' active={activeItem === 'preferences'} onClick={this.handleItemClick}>
 					<FormattedMessage id="nav.preferences" defaultMessage="Preferences" />
 				</Menu.Item>

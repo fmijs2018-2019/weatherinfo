@@ -51,7 +51,7 @@ export const getFavourites = () => {
 	return favouritesStr && JSON.parse(favouritesStr) || [];
 }
 
-export const getSettingsOrDefault = () => {
+export const getSettingsOrDefault = (): ISettings => {
 	let settingsStr = localStorage.getItem('settings');
 	const defaultSettings: ISettings = {
 		language: 'en',

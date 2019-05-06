@@ -58,11 +58,11 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.rain' defaultMessage='Rain' /></Table.Cell>
-							<Table.Cell>{rain && (rain['3h'] || rain['1h']) || 0} mm</Table.Cell>
+							<Table.Cell>{rain && (rain['3h'] || rain['1h']) || 0} <FormattedMessage id="weather.rain_mm" defaultMessage="mm"/></Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.snow' defaultMessage='Snow' /></Table.Cell>
-							<Table.Cell>{snow && (snow['3h'] || snow['1h']) || 0} mm</Table.Cell>
+							<Table.Cell>{snow && (snow['3h'] || snow['1h']) || 0} <FormattedMessage id="weather.rain_mm" defaultMessage="mm"/></Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='geo.coords' defaultMessage='Geo coords' /></Table.Cell>

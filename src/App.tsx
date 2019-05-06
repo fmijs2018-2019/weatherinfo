@@ -23,7 +23,7 @@ class App extends Component<IAppProps> {
 		return <Layout>
 			<Switch>
 				<Route exact path="/home" component={HomeScene} />
-				<Route path='/about' component={AboutScene} />
+				{/* <Route path='/about' component={AboutScene} /> */}
 				<Route path='/cities/:city' component={CityScene} />
 				<Route path='/map' component={MapScene} />
 				<Route path='/preferences' component={() => <PreferencesScene onLocaleChange={onLocaleChange}/>} />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
-import { InjectedIntlProps, injectIntl, FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 interface IChartNavBarProps {
 	activeItem: string;

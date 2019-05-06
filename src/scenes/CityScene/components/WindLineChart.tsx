@@ -35,7 +35,12 @@ export const WindLineChart = (props: IWindLineChart) => {
 				<Tooltip
 					content={<CustomTooltip />}
 				/>
-				<Legend />
+				<Legend payload={[{
+					value: <FormattedMessage id="weather.wind_speed" defaultMessage="Speed" />,
+					type: 'line',
+					id: 'speed',
+					color: '#0857e0'
+				}]}/>
 
 				<Line type="monotone" name="Speed" dataKey="speed" stroke="#0857e0" unit="m/s" />
 			</LineChart>

@@ -68,15 +68,17 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 		this.setState({ showModal: true });
 	}
 
-	onModalClose = () => {
+	onResetCancel = () => {
 		this.setState({ showModal: false });
 	}
 
-	onModalConfirm = () => {
+	onResetConfirm = () => {
 		const settings: ISettings = resetSettings();
 		const { language, tempMetric, hoursFormat } = settings;
+		const { onLocaleChange } = this.props;
 
 		this.setState({ language, tempMetric, hoursFormat, showModal: false });
+		onLocaleChange(language);
 	}
 
 	onApply = () => {
@@ -139,7 +141,7 @@ export class SettingsSection extends React.Component<ISettingsSectionProps, ISet
 					</Button>
 				</div>
 			</div>
-			<ResetSettingsModal showModal={showModal} onClose={this.onModalClose} onConfirm={this.onModalConfirm} />
+			<ResetSettingsModal showModal={showModal} onClose={this.onResetCancel} onConfirm={this.onResetConfirm} />
 		</Segment>;
 	}
 }

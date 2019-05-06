@@ -1,8 +1,9 @@
 import React from 'react';
-import { Dropdown, DropdownItemProps, DropdownItem } from 'semantic-ui-react';
+import { Dropdown, Icon } from 'semantic-ui-react';
 import classNames from 'classnames';
+import { FormattedMessage, InjectedIntlProps, injectIntl, defineMessages } from 'react-intl';
 
-interface IContinentsDropdownProps {
+interface IContinentsDropdownProps extends InjectedIntlProps {
 	onContinentSelect: (item: IContinentItem) => void;
 	className?: string;
 	style?: React.CSSProperties;
@@ -10,14 +11,21 @@ interface IContinentsDropdownProps {
 }
 
 export interface IContinentItem {
-	name: string;
+	name: React.ReactNode;
 	lat: number;
 	lon: number;
 	zoom: number;
 }
 
-export const ContinentsDropdown: React.SFC<IContinentsDropdownProps> = (props) => {
-	const { onContinentSelect, className, style, options } = props;
+const messages = defineMessages({
+	dropdownText: {
+		id: 'common.location',
+		defaultMessage: 'Location'
+	}
+})
+
+const ContinentsDropdownInternal: React.SFC<IContinentsDropdownProps> = (props) => {
+	const { onContinentSelect, className, style, options, intl } = props;
 	const classes = classNames(className, "icon");
 
 	const styles = {
@@ -27,9 +35,12 @@ export const ContinentsDropdown: React.SFC<IContinentsDropdownProps> = (props) =
 	}
 
 	return (
-		<Dropdown style={styles} text='Location' icon='location arrow' button labeled floating color="blue" className={classes}>
+		<Dropdown style={styles} text={intl.formatMessage(messages.dropdownText)} icon='location arrow' button labeled floating color="blue" className={classes}>
 			<Dropdown.Menu>
-				<Dropdown.Header icon='map marker alternate' content='Filter by location' />
+				<Dropdown.Header icon='map marker alternate' >
+					<span><Icon name="map marker alternate" /></span>
+					<FormattedMessage id="map.filter_by_location" defaultMessage="Filter by location" />
+				</Dropdown.Header>
 				<Dropdown.Divider />
 				{options.map((i, ind) => (
 					<Dropdown.Item key={ind} onClick={() => onContinentSelect(i)} >{i.name}</Dropdown.Item>
@@ -38,3 +49,5 @@ export const ContinentsDropdown: React.SFC<IContinentsDropdownProps> = (props) =
 		</Dropdown>
 	);
 };
+
+export const ContinentsDropdown = injectIntl(ContinentsDropdownInternal);
