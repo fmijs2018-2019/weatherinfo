@@ -11,6 +11,7 @@ import { IPressureDataItem } from '../../../models/IPressureDataItem';
 import { IPrecipitationDataItem } from '../../../models/IPrecipitationDataItem';
 import { IWindDataItem } from '../../../models/IWindDataItem';
 import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../../common/localStorageService';
+import { formatDate } from '../../../common/formatDate';
 
 interface IChartsComponentProps {
 	currentWeather: ICurrentWeather,
@@ -59,7 +60,7 @@ export default class ChartsComponent extends React.Component<IChartsComponentPro
 		}
 
 		chartsData.forEach(i => {
-			const name = i.dt_txt.slice(11, 16);
+			const name = formatDate(new Date(i.dt_txt));
 			tempChartData.push({
 				name,
 				min: i.main.temp_min,
