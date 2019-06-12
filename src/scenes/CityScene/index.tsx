@@ -82,9 +82,14 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 		return <div className="container body">
 			{city && <Header as="h1">{city && city[0].toUpperCase() + city.substring(1) || ''}, {country}</Header>}
 			{city && <Header as="h3"><FormattedMessage id="city.weather_and_forcast" defaultMessage="Current weather and forecast" /></Header>}
-			{cityId && <div style={{ float: 'right' }}>
-				<HeartToggleIcon onClick={() => this.onToggleIconClick(cityId)} active={isInFavourites} />
-			</div>}
+			{cityId &&
+				<div className="row">
+					<div className="col-xs-12">
+						<span style={{float: 'right'}}>
+							<HeartToggleIcon onClick={() => this.onToggleIconClick(cityId)} active={isInFavourites} />
+						</span>
+					</div>
+				</div>}
 			<div className="row">
 				<div className="col-md-3">
 					{currentWeather && <WeatherSummaryTable currentWeather={currentWeather}></WeatherSummaryTable>}

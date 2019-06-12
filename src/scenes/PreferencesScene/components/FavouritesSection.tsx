@@ -3,6 +3,7 @@ import { ICurrentWeather } from '../../../models/ICurrentWeather';
 import { Pagination, Icon, Button, Segment } from 'semantic-ui-react';
 import { ListWeatherItem } from '../../../components/ListWeatherItem';
 import { DeleteFromFavouritesModal } from '../../../components/DeleteFromFavouritesModal';
+import { FormattedMessage } from 'react-intl';
 
 interface IFavouritesSectionProps {
 	favouritesWeather: ICurrentWeather[],
@@ -61,7 +62,7 @@ export class FavouritesSection extends React.Component<IFavouritesSectionProps, 
 						onPageChange={(e: any, d: any) => onPageChange(d.activePage)}
 						defaultActivePage={1}
 						firstItem={null}
-						lastItem={null} /> || <div>There is no cities in Favourites.</div>}
+						lastItem={null} /> || <div><FormattedMessage id="common.no_saved_locations" defaultMessage="There are no cities in Favourites."/></div>}
 				</div>
 			</div>
 			<DeleteFromFavouritesModal

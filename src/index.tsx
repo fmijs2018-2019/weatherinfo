@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import '../node_modules/swiper/dist/css/swiper.css';
 import '../node_modules/react-id-swiper/src/styles/css/swiper.css'
-import './bootstrap/css/bootstrap-theme.css';
 import './bootstrap/css/bootstrap.css';
 import 'semantic-ui-css/semantic.min.css';
 import App from './App';

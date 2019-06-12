@@ -37,7 +37,7 @@ const ContinentsDropdownInternal: React.SFC<IContinentsDropdownProps> = (props) 
 	return (
 		<Dropdown style={styles} text={intl.formatMessage(messages.dropdownText)} icon='location arrow' button labeled floating color="blue" className={classes}>
 			<Dropdown.Menu>
-				<Dropdown.Header icon='map marker alternate' >
+				<Dropdown.Header >
 					<span><Icon name="map marker alternate" /></span>
 					<FormattedMessage id="map.filter_by_location" defaultMessage="Filter by location" />
 				</Dropdown.Header>

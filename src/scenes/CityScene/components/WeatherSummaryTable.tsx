@@ -18,21 +18,20 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 	const weatherId = shortWeather[0].id;
 
 	const style: React.CSSProperties = {
-		marginTop: '-15px',
-		paddingLeft: '25px',
-		fontSize: '16px',
+		display: 'flex',
+		alignItems: 'center',
 	}
 
 	return <React.Fragment>
-		<div className="row" >
-			<div className="col-xs-12">
+		<div className="row">
+			<div className="col-xs-12" style={style}>
 				<WeatherIcon icon={icon} />
 				<span style={{ fontSize: '28px' }}><FormattedTemperature temp={mainWeather.temp} /></span>
 			</div>
 		</div>
 		<div className="row">
-			<div className="col-xs-12" style={style}>
-				<b><FormattedMainWeather weatherId={weatherId}/></b>
+			<div className="col-xs-12" style={{ marginLeft: '10px', marginTop: '-15px' }}>
+				<b><FormattedMainWeather weatherId={weatherId} /></b>
 				<span>{' '}{description}</span>
 			</div>
 		</div>
@@ -42,7 +41,7 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 					<Table.Body>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.wind' defaultMessage='Wind' /></Table.Cell>
-							<Table.Cell>{wind.speed} <FormattedMessage id="weather.wind_mps" defaultMessage="m/s"/>{wind.deg && <span>, {getWindDirection(wind.deg)} ({wind.deg})</span>}</Table.Cell>
+							<Table.Cell>{wind.speed} <FormattedMessage id="weather.wind_mps" defaultMessage="m/s" />{wind.deg && <span>, {getWindDirection(wind.deg)} ({wind.deg})</span>}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.cloudiness' defaultMessage='Cloudiness' /></Table.Cell>
@@ -50,7 +49,7 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.pressure' defaultMessage='Pressure' /></Table.Cell>
-							<Table.Cell>{mainWeather.pressure} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa"/></Table.Cell>
+							<Table.Cell>{mainWeather.pressure} <FormattedMessage id="weather.pressure_hpa" defaultMessage="hpa" /></Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.humidity' defaultMessage='Humidity' /></Table.Cell>
@@ -58,11 +57,11 @@ export const WeatherSummaryTable = (props: IWeatherSummaryTableProps) => {
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.rain' defaultMessage='Rain' /></Table.Cell>
-							<Table.Cell>{rain && (rain['3h'] || rain['1h']) || 0} <FormattedMessage id="weather.rain_mm" defaultMessage="mm"/></Table.Cell>
+							<Table.Cell>{rain && (rain['3h'] || rain['1h']) || 0} <FormattedMessage id="weather.rain_mm" defaultMessage="mm" /></Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='weather.snow' defaultMessage='Snow' /></Table.Cell>
-							<Table.Cell>{snow && (snow['3h'] || snow['1h']) || 0} <FormattedMessage id="weather.rain_mm" defaultMessage="mm"/></Table.Cell>
+							<Table.Cell>{snow && (snow['3h'] || snow['1h']) || 0} <FormattedMessage id="weather.rain_mm" defaultMessage="mm" /></Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell><FormattedMessage id='geo.coords' defaultMessage='Geo coords' /></Table.Cell>
