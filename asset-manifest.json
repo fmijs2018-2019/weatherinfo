@@ -1,0 +1,16 @@
+{
+  "main.css": "/weatherinfo/static/css/main.8dd836dc.chunk.css",
+  "main.js": "/weatherinfo/static/js/main.4e03427c.chunk.js",
+  "main.js.map": "/weatherinfo/static/js/main.4e03427c.chunk.js.map",
+  "runtime~main.js": "/weatherinfo/static/js/runtime~main.be90cdc8.js",
+  "runtime~main.js.map": "/weatherinfo/static/js/runtime~main.be90cdc8.js.map",
+  "static/css/2.8cef4181.chunk.css": "/weatherinfo/static/css/2.8cef4181.chunk.css",
+  "static/js/2.1fb2110e.chunk.js": "/weatherinfo/static/js/2.1fb2110e.chunk.js",
+  "static/js/2.1fb2110e.chunk.js.map": "/weatherinfo/static/js/2.1fb2110e.chunk.js.map",
+  "index.html": "/weatherinfo/index.html",
+  "precache-manifest.20c63d3d165a4ee603c4405abc5d43f9.js": "/weatherinfo/precache-manifest.20c63d3d165a4ee603c4405abc5d43f9.js",
+  "service-worker.js": "/weatherinfo/service-worker.js",
+  "static/css/2.8cef4181.chunk.css.map": "/weatherinfo/static/css/2.8cef4181.chunk.css.map",
+  "static/css/main.8dd836dc.chunk.css.map": "/weatherinfo/static/css/main.8dd836dc.chunk.css.map",
+  "static/media/semantic.min.css": "/weatherinfo/static/media/outline-icons.ef60a4f6.woff"
+}
