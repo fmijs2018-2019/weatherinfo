@@ -12,6 +12,7 @@ import { IFiveDaysThreeHoursWeather } from '../../models/IFIveDaysThreeHoursWeat
 import ChartsComponent from './components/ChartsComponent';
 import { checkIfInFavourites, removeFromFavourites, addToFavourites } from '../../common/localStorageService';
 import { HeartToggleIcon } from '../../components/HeartToggleIcon';
+import _ from 'lodash';
 
 interface ICitySceneState {
 	currentWeather?: ICurrentWeather,
@@ -40,26 +41,27 @@ class CityScene extends React.Component<ICitySceneProps, ICitySceneState> {
 
 		Promise.all([currentWeatherPromise, fiveDaysThreeHoursWeatherPromise])
 			.then(([currentWeather, fiveDaysThreeHoursWeather]) => {
-				let swiperItemsData: IWeatherShortInfo[] = [];
 
-				for (let i = 0; i < 40; i = i + 8) {
-					const dayWeatherData = fiveDaysThreeHoursWeather.list[i];
-
-					const dayWeatherShortInfo: IWeatherShortInfo = {
-						clouds: dayWeatherData.clouds.all,
-						windSpeed: dayWeatherData.wind.speed,
-						temp: dayWeatherData.main.temp,
-						temp_min: dayWeatherData.main.temp_min,
-						temp_max: dayWeatherData.main.temp_max,
-						pressure: dayWeatherData.main.pressure,
-						humidity: dayWeatherData.main.humidity,
-						description: dayWeatherData.weather[0].description,
-						icon: dayWeatherData.weather[0].icon,
-						date: dayWeatherData.dt,
-					}
-
-					swiperItemsData.push(dayWeatherShortInfo);
-				}
+				var grouped = _.groupBy(fiveDaysThreeHoursWeather.list, e => new Date(e.dt * 1000).getDate());
+				const swiperItemsData = Object.keys(grouped)
+					.map(e => {
+						var perDayList = grouped[e];
+						var minTemp = _.minBy(perDayList, e => e.main.temp_min);
+						var maxTemp = _.maxBy(perDayList, e => e.main.temp_max);
+						var avg: IWeatherShortInfo = {
+							clouds: Math.round(_.meanBy(perDayList, e => e.clouds.all)),
+							windSpeed: +(_.meanBy(perDayList, e => e.wind.speed).toFixed(2)),
+							temp: +(_.meanBy(perDayList, e => e.main.temp).toFixed(2)),
+							temp_min: +(minTemp ? minTemp.main.temp_min : 0).toFixed(2),
+							temp_max: +(maxTemp ? maxTemp.main.temp_max : 0).toFixed(2),
+							pressure: +(_.meanBy(perDayList, e => e.main.pressure).toFixed(2)),
+							humidity: Math.round(_.meanBy(perDayList, e => e.main.humidity)),
+							description: perDayList[0].weather[0].description,
+							icon: perDayList[0].weather[0].icon,
+							date: perDayList[0].dt,
+						}
+						return avg;
+					});
 
 				this.setState({ swiperItemsData, currentWeather, fiveDaysThreeHoursWeather, isInFavourites: checkIfInFavourites(currentWeather.id) });
 			})
