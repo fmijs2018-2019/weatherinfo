@@ -22,7 +22,7 @@ class App extends Component<IAppProps> {
 		const { onLocaleChange } = this.props;
 		return <Layout>
 			<Switch>
-				<Route exact path="/home" component={HomeScene} />
+				<Route path="/home" component={HomeScene} />
 				{/* <Route path='/about' component={AboutScene} /> */}
 				<Route path='/cities/:city' component={CityScene} />
 				<Route path='/map' component={MapScene} />

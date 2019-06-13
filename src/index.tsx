@@ -44,7 +44,7 @@ class StatefulIntlProvider extends React.Component<{}, IStatefulIntlProvider> {
 		const { locale } = this.state;
 		return (
 			<IntlProvider locale={locale} messages={messages[locale]}>
-				<BrowserRouter>
+				<BrowserRouter basename="/weatherinfo">
 					<App onLocaleChange={this.onLocaleChange}/>
 				</BrowserRouter>
 			</IntlProvider>
